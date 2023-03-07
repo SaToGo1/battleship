@@ -16,7 +16,7 @@ function ShipFactory(length, numberHits=0){
     }
 
 
-    // (LOGIC) METHODS 
+    // (LOGIC) METHODS
     const hit = () => {
         _numberHits++;
     }

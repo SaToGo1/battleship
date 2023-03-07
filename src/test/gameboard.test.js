@@ -1,8 +1,24 @@
-const Gameboard = require("../gameboard")
+const GameboardFactory = require("../gameboard");
 
 describe('GameBoard', () => {
 
-    it('hi', () => {
-        expect(0).toBe(0);
+    let GB = GameboardFactory();
+    it('board inicialization', () => {
+        expect(GB.getBoard()).toStrictEqual(boardInicialization);
     })
 })
+
+
+let boardInicialization = 
+[
+ [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+ [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+ [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+ [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+ [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+ [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+ [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+ [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+ [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+ [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+];
