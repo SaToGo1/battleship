@@ -39,13 +39,19 @@ function GameboardFactory(){
 
                 for(let i = x; i < (x+length); i++){
                     _boardHits[y][i] = 1;
-                    _boardShips = _ships.length;
+                    _boardShips[y][i] = _ships.length;
                 }
                 _ships.push(ship);
             }
         }else{ // Place Ship Vertical
             if( (y + length < _size) && (y > -1) ){
+                let ship = ShipFactory(length);
 
+                for(let i = y; i < (y+length); i++){
+                    _boardHits[i][x] = 1;
+                    _boardShips[i][x] = _ships.length;
+                }
+                _ships.push(ship);
             }
         }
     }
