@@ -3,53 +3,69 @@ const ShipFactory = require("./ship");
 function GameboardFactory(){
     // Properties
     _size = 10; // The size of the grid will be 10x10
+
+    // here we will save all the ships in the board.
     _ships = [];
 
     // board setting 10x10 matrix, with 0
     // 0 => cell is not hit.
     // 1 => cell has a Ship that is not hit.
     // 2 => cell is hit.
-    // coordinates-> _boardHits[y][x] / first y then x
-    _boardHits = [];
+    // coordinates-> _hitsBoard[y][x] / first y then x
+    _hitsBoard = [];
     for(let y = 0; y < 10; y++){
-        _boardHits.push([])
-        _boardHits[y].push(0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        _hitsBoard.push([])
+        _hitsBoard[y].push(0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
     }
 
     // This board will contain -1 if empty and
     // the ship index on _ships array if that cell
     // has a Ship.
-    // coordinates-> _boardHits[y][x] / first y then x
-    _boardShips = [];
+    // coordinates-> _shipsBoard[y][x] / first y then x
+    _shipsBoard = [];
     for(let y = 0; y < 10; y++){
-        _boardShips.push([])
-        _boardShips[y].push(-1, -1, -1, -1, -1, -1, -1, -1, -1, -1);
+        _shipsBoard.push([])
+        _shipsBoard[y].push(-1, -1, -1, -1, -1, -1, -1, -1, -1, -1);
     }
 
     // Geters Setters
     const getBoard = () => {
-        return _boardHits;
+        return _hitsBoard;
     }
 
     // METHODS
     const placeShip = (y, x, length, isHorizontal=true) => {
-        if(isHorizontal){ // Place Ship Horizontal
+        
+        // Place Ship Horizontal
+        if(isHorizontal){ 
+
+            // Ship is inside the edges of the board
             if( (x + length < _size) && (x > -1) ){
                 let ship = ShipFactory(length);
 
+                // space filled with a ship equal to 1 in the Hitsboard.
+                // space filled with a ship equal to the index of the 
+                //      ship(in _ships array) in the Shipsboard.
                 for(let i = x; i < (x+length); i++){
-                    _boardHits[y][i] = 1;
-                    _boardShips[y][i] = _ships.length;
+                    _hitsBoard[y][i] = 1;
+                    _shipsBoard[y][i] = _ships.length;
                 }
                 _ships.push(ship);
             }
-        }else{ // Place Ship Vertical
+
+        // Place Ship Vertical
+        }else{ 
+
+            // Ship is inside the edges of the board
             if( (y + length < _size) && (y > -1) ){
                 let ship = ShipFactory(length);
 
+                // space filled with a ship equal to 1 in the Hitsboard.
+                // space filled with a ship equal to the index of the 
+                //      ship(in _ships array) in the Shipsboard.
                 for(let i = y; i < (y+length); i++){
-                    _boardHits[i][x] = 1;
-                    _boardShips[i][x] = _ships.length;
+                    _hitsBoard[i][x] = 1;
+                    _shipsBoard[i][x] = _ships.length;
                 }
                 _ships.push(ship);
             }
@@ -57,15 +73,17 @@ function GameboardFactory(){
     }
 
     const receiveAttack = (y, x) => {
-        if(_boardHits[y][x] === 1){ // Hit the ship
-            _boardHits[y][x] = 2;     
+        // Hit the ship
+        if(_hitsBoard[y][x] === 1){ 
+            _hitsBoard[y][x] = 2;     
 
-            let shipIndex = _boardShips[y][x];
+            let shipIndex = _shipsBoard[y][x];
             let shipHitted = _ships[shipIndex];
             shipHitted.hit();
 
-        }else{ // Hit the water
-            _boardHits[y][x] = 2;
+        // Hit the water
+        }else{ 
+            _hitsBoard[y][x] = 2;
         }
     }
 
