@@ -57,7 +57,16 @@ function GameboardFactory(){
     }
 
     const receiveAttack = (y, x) => {
+        if(_boardHits[y][x] === 1){ // Hit the ship
+            _boardHits[y][x] = 2;     
+            
+            let shipIndex = _boardShips[y][x];
+            let shipHitted = _ships[shipIndex];
+            shipHitted.hit();
 
+        }else{ // Hit the water
+            _boardHits[y][x] = 2;
+        }
     }
 
     return {
