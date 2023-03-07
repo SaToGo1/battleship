@@ -1,27 +1,30 @@
-const Ship = require("../ship")
+const ShipFactory = require("../ship")
 
-test('Ship initialization', () => {
-    let ship1 = new Ship(2);
-    let ship2 = new Ship(4, 4);
-    expect(ship1.length).toBe(2);
-    expect(ship1.numberHits).toBe(0);
+describe('Ship', () => {
 
-    expect(ship2.length).toBe(4);
-    expect(ship2.numberHits).toBe(4);
+    it('Ship initialization', () => {
+        let ship1 = ShipFactory(2);
+        let ship2 = ShipFactory(4, 4);
+        expect(ship1.getLength()).toBe(2);
+        expect(ship1.getNumberHits()).toBe(0);
 
-})
+        expect(ship2.getLength()).toBe(4);
+        expect(ship2.getNumberHits()).toBe(4);
 
-test('Ship.hit()', () => {
-    let ship1 = new Ship(2);
-    ship1.hit();
-    expect(ship1.numberHits).toBe(1);
-})
+    })
 
-test('Ship.isSunk()', () => {
-    let ship1 = new Ship(2, 0);
-    let ship2 = new Ship(2, 2);
-    let ship3 = new Ship(2, 3);
-    expect(ship1.isSunk()).toBe(false);
-    expect(ship2.isSunk()).toBe(true);
-    expect(ship3.isSunk()).toBe(true);
+    it('Ship.hit()', () => {
+        let ship1 = ShipFactory(2);
+        ship1.hit();
+        expect(ship1.getNumberHits()).toBe(1);
+    })
+
+    it('Ship.isSunk()', () => {
+        let ship1 = ShipFactory(2, 0);
+        let ship2 = ShipFactory(2, 2);
+        let ship3 = ShipFactory(2, 3);
+        expect(ship1.isSunk()).toBe(false);
+        expect(ship2.isSunk()).toBe(true);
+        expect(ship3.isSunk()).toBe(true);
+    })
 })
