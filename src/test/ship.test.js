@@ -11,15 +11,17 @@ test('Ship initialization', () => {
 
 })
 
-test('Ship Hit', () => {
+test('Ship.hit()', () => {
     let ship1 = new Ship(2);
     ship1.hit();
     expect(ship1.numberHits).toBe(1);
 })
 
-test('Ship sunk', () => {
+test('Ship.isSunk()', () => {
     let ship1 = new Ship(2, 0);
     let ship2 = new Ship(2, 2);
+    let ship3 = new Ship(2, 3);
     expect(ship1.isSunk()).toBe(false);
     expect(ship2.isSunk()).toBe(true);
+    expect(ship3.isSunk()).toBe(true);
 })
