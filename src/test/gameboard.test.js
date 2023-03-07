@@ -8,18 +8,27 @@ describe('GameBoard', () => {
         expect(GB.getBoard()).toStrictEqual(boardInicialization);
     })
 
-    it('place ship', () => {
+    it('place ship Horizontal', () => {
         let GB = GameboardFactory();
 
+        
         // Ship will be placed on 'x' from y,x=1,1 to y,x=1,5
         // you can see boardPlaceShip below to see position in board
         GB.placeShip(1, 1, 5, true);
-        expect(GB.getBoard()).toStrictEqual(boardPlaceShip);
+        expect(GB.getBoard()).toStrictEqual(boardPlaceShipHorizontal);
 
         // Ship will not be placed because is out of edges
         // So we will keep the same board as before.
-        GB.placeShip(7, 7, 5, true);
+        GB.placeShip(6, 6, 5, true);
         expect(GB.getBoard()).toStrictEqual(boardPlaceShip);
+    })
+
+    it('place ship vertical', () => {
+        let GB = GameboardFactory();
+
+        // Ship will be placed on 'y' from y,x=1,1 to y,x=5,1
+        GB.placeShip(1, 1, 5, false);
+        expect(GB.getBoard()).toStrictEqual(boardPlaceShipVertical);
     })
 })
 
@@ -38,7 +47,7 @@ let boardInicialization =
  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 ];
 
-let boardPlaceShip = 
+let boardPlaceShipHorizontal = 
 [
  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
  [0, 1, 1, 1, 1, 1, 0, 0, 0, 0],
@@ -46,6 +55,20 @@ let boardPlaceShip =
  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+ [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+ [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+ [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+ [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+];
+
+let boardPlaceShipVertical = 
+[
+ [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+ [0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+ [0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+ [0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+ [0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+ [0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],

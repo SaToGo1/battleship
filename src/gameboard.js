@@ -1,4 +1,4 @@
-const Ship = require("./ship");
+const ShipFactory = require("./ship");
 
 function GameboardFactory(){
     // Properties
@@ -9,6 +9,7 @@ function GameboardFactory(){
     // 0 => cell is not hit.
     // 1 => cell has a Ship that is not hit.
     // 2 => cell is hit.
+    // coordinates-> _boardHits[y][x] / first y then x
     _boardHits = [];
     for(let y = 0; y < 10; y++){
         _boardHits.push([])
@@ -18,6 +19,7 @@ function GameboardFactory(){
     // This board will contain -1 if empty and
     // the ship index on _ships array if that cell
     // has a Ship.
+    // coordinates-> _boardHits[y][x] / first y then x
     _boardShips = [];
     for(let y = 0; y < 10; y++){
         _boardShips.push([])
@@ -30,10 +32,16 @@ function GameboardFactory(){
     }
 
     // METHODS
-    const placeShip = (x, y, length, isHorizontal=true) => {
+    const placeShip = (y, x, length, isHorizontal=true) => {
         if(isHorizontal){ // Place Ship Horizontal
             if( (x + length < _size) && (x > -1) ){
+                let ship = ShipFactory(length);
 
+                for(let i = x; i < (x+length); i++){
+                    _boardHits[y][i] = 1;
+                    _boardShips = _ships.length;
+                }
+                _ships.push(ship);
             }
         }else{ // Place Ship Vertical
             if( (y + length < _size) && (y > -1) ){
@@ -43,7 +51,8 @@ function GameboardFactory(){
     }
 
     return {
-        getBoard
+        getBoard,
+        placeShip
     }
 }
 
