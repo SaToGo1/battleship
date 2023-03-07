@@ -47,6 +47,16 @@ describe('GameBoard', () => {
         GB.placeShip(-1, -1, 5, false);
         expect(GB.getBoard()).toStrictEqual(emptyBoard);
     })
+
+    it('receive Attack', () => {
+        let GB = GameboardFactory();
+
+        GB.receiveAttack(1, 1);
+        GB.receiveAttack(1, 2);
+        GB.receiveAttack(1, 3);
+
+        expect(GB.getBoard()).toStrictEqual(boardReceiveAttack);
+    })
 })
 
 
@@ -82,6 +92,20 @@ let boardPlaceShipVertical =
 [
  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
  [0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+ [0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+ [0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+ [0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+ [0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+ [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+ [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+ [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+ [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+];
+
+let boardReceiveAttack = 
+[
+ [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+ [0, 2, 2, 2, 0, 0, 0, 0, 0, 0],
  [0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
  [0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
  [0, 1, 0, 0, 0, 0, 0, 0, 0, 0],

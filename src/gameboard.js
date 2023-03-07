@@ -56,9 +56,14 @@ function GameboardFactory(){
         }
     }
 
+    const receiveAttack = (y, x) => {
+
+    }
+
     return {
         getBoard,
-        placeShip
+        placeShip,
+        receiveAttack
     }
 }
 
