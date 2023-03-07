@@ -5,7 +5,7 @@ describe('GameBoard', () => {
 
     it('board inicialization', () => {
         let GB = GameboardFactory();
-        expect(GB.getBoard()).toStrictEqual(boardInicialization);
+        expect(GB.getBoard()).toStrictEqual(emptyBoard);
     })
 
     it('place ship Horizontal', () => {
@@ -16,11 +16,6 @@ describe('GameBoard', () => {
         // you can see boardPlaceShip below to see position in board
         GB.placeShip(1, 1, 5, true);
         expect(GB.getBoard()).toStrictEqual(boardPlaceShipHorizontal);
-
-        // Ship will not be placed because is out of edges
-        // So we will keep the same board as before.
-        GB.placeShip(6, 6, 5, true);
-        expect(GB.getBoard()).toStrictEqual(boardPlaceShip);
     })
 
     it('place ship vertical', () => {
@@ -30,10 +25,32 @@ describe('GameBoard', () => {
         GB.placeShip(1, 1, 5, false);
         expect(GB.getBoard()).toStrictEqual(boardPlaceShipVertical);
     })
+
+    it('place ship out of edges', () => {
+        let GB = GameboardFactory();
+        // Ship will not be placed because is out of edges
+        // So we will keep the empty board after trying to place.
+        
+        // Horizontal
+        GB.placeShip(6, 6, 5, true);
+        expect(GB.getBoard()).toStrictEqual(emptyBoard);
+
+        //Vertical
+        GB.placeShip(6, 6, 5, false);
+        expect(GB.getBoard()).toStrictEqual(emptyBoard);
+
+        // Horizontal
+        GB.placeShip(-1, -1, 5, true);
+        expect(GB.getBoard()).toStrictEqual(emptyBoard);
+
+        //Vertical
+        GB.placeShip(-1, -1, 5, false);
+        expect(GB.getBoard()).toStrictEqual(emptyBoard);
+    })
 })
 
 
-let boardInicialization = 
+let emptyBoard = 
 [
  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
