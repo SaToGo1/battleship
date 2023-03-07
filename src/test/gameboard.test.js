@@ -57,6 +57,28 @@ describe('GameBoard', () => {
         GB.receiveAttack(1, 3);
 
         expect(GB.getBoard()).toStrictEqual(boardReceiveAttack);
+
+    })
+
+    it('All sunk', () => {
+        let GB = GameboardFactory();
+        GB.placeShip(1, 1, 2, false);
+        GB.placeShip(5, 5, 2, true);
+
+        // 0 ships sunk
+        expect(GB.areAllSunk()).toStrictEqual(false);
+
+        GB.receiveAttack(1, 1);
+        GB.receiveAttack(2, 1);
+
+        // 1 ship sunk
+        expect(GB.areAllSunk()).toStrictEqual(false);
+
+        GB.receiveAttack(3, 3);
+        GB.receiveAttack(3, 4);
+
+        // all ships sunk
+        expect(GB.areAllSunk()).toStrictEqual(true);
     })
 })
 
