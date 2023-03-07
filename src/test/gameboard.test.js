@@ -74,8 +74,8 @@ describe('GameBoard', () => {
         // 1 ship sunk
         expect(GB.areAllSunk()).toStrictEqual(false);
 
-        GB.receiveAttack(3, 3);
-        GB.receiveAttack(3, 4);
+        GB.receiveAttack(5, 5);
+        GB.receiveAttack(5, 6);
 
         // all ships sunk
         expect(GB.areAllSunk()).toStrictEqual(true);

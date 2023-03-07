@@ -59,7 +59,7 @@ function GameboardFactory(){
     const receiveAttack = (y, x) => {
         if(_boardHits[y][x] === 1){ // Hit the ship
             _boardHits[y][x] = 2;     
-            
+
             let shipIndex = _boardShips[y][x];
             let shipHitted = _ships[shipIndex];
             shipHitted.hit();
@@ -69,10 +69,25 @@ function GameboardFactory(){
         }
     }
 
+    const areAllSunk = () => {
+        let lastSunk = true;
+        let actualSunk = true;
+        // iterate over all the ships if one ship is not sunk 
+        // (isSunk == false) from there on all the results 
+        // of (lastSunk && actualSunk) will be false.
+        for(let i = 0; i < _ships.length; i++){
+            lastSunk = (lastSunk && actualSunk);
+            actualSunk = _ships[i].isSunk();
+        }
+
+        return (lastSunk && actualSunk)
+    }
+
     return {
         getBoard,
         placeShip,
-        receiveAttack
+        receiveAttack,
+        areAllSunk
     }
 }
 
