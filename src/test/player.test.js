@@ -15,6 +15,14 @@ describe('Player', () => {
         player.attackBoard(GB, 1, 2);
         expect(GB.getBoard()).toEqual(boardAttacked2);
     })
+
+    it('computerPlays', () => {
+        let player = Player()
+        let GB = GameboardFactory();
+
+        player.computerPlays(GB)
+        expect(GB.getBoard()).toContain(2)
+    })
 })
 
 
