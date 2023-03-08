@@ -99,8 +99,12 @@ function GameboardFactory(){
                 shipHitted.hit();
 
             // Hit the water
-            }else{ 
+            }else if(_hitsBoard[y][x] === 0){
                 _hitsBoard[y][x] = 2;
+                
+            // Cell already hit (cell === 2 )
+            }else{ 
+                return false;
             }
             return true;
         }

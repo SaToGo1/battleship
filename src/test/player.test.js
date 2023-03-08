@@ -21,7 +21,22 @@ describe('Player', () => {
         let GB = GameboardFactory();
 
         player.computerPlays(GB)
-        expect(GB.getBoard()).toContain(2)
+
+        // the next code is to check if there 
+        // is a 2 in the board matrix.
+        let board = GB.getBoard()
+        let containTwo = false;
+        for(let i = 0; i < board.length; i++){
+            let row = board[i]
+            for(let j = 0; j < row.length; j++){
+                if(row[j] == 2){
+                    containTwo = true
+                }
+
+            }
+        }
+        
+        expect(containTwo).toBe(true)
     })
 })
 
