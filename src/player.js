@@ -1,8 +1,13 @@
+
 function Player(){
 
     // Methods
-    return {
+    const attackBoard = (GB, y, x) => {
+        GB.receiveAttack(y,x);
+    }
 
+    return {
+        attackBoard
     }
 }
 

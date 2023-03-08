@@ -6,12 +6,13 @@ describe('Player', () => {
     // *this is tested in the gameboard receive attack test
     // if it does not work erase and focus on that test.
     it('Player attack', () => {
+        let player = Player()
         let GB = GameboardFactory();
         GB.placeShip(1, 1, 5, false);
 
-        Player.attack(GB, 1, 1);
+        player.attackBoard(GB, 1, 1);
         expect(GB.getBoard()).toEqual(boardAttacked1)
-        Player.attack(GB, 1, 2);
+        player.attackBoard(GB, 1, 2);
         expect(GB.getBoard()).toEqual(boardAttacked2);
     })
 })
