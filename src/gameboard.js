@@ -34,6 +34,14 @@ function GameboardFactory(){
     }
 
     // METHODS
+    /**
+     * Places the ship in the board.
+     * 
+     * @param {Number} y Coordinate
+     * @param {Number} x Coordinate
+     * @param {Number} length length of the ship
+     * @param {Boolean} isHorizontal is the ship placed in horizontal?
+     */
     const placeShip = (y, x, length, isHorizontal=true) => {
         
         // Place Ship Horizontal
@@ -72,21 +80,38 @@ function GameboardFactory(){
         }
     }
 
+    /**
+     * Recieve an atack in the coordinates y,x of the board.
+     * 
+     * @param {Number} y Coordinates
+     * @param {Number} x Coordinates
+     * @returns {boolean} returns true if the attack has been executed.
+     */
     const receiveAttack = (y, x) => {
-        // Hit the ship
-        if(_hitsBoard[y][x] === 1){ 
-            _hitsBoard[y][x] = 2;     
+        // y,x are out of the edges. we do nothing
+        if( (y>0 && x>0) && (y<_size && x<_size)){
+            // Hit the ship
+            if(_hitsBoard[y][x] === 1){ 
+                _hitsBoard[y][x] = 2;     
 
-            let shipIndex = _shipsBoard[y][x];
-            let shipHitted = _ships[shipIndex];
-            shipHitted.hit();
+                let shipIndex = _shipsBoard[y][x];
+                let shipHitted = _ships[shipIndex];
+                shipHitted.hit();
 
-        // Hit the water
-        }else{ 
-            _hitsBoard[y][x] = 2;
+            // Hit the water
+            }else{ 
+                _hitsBoard[y][x] = 2;
+            }
+            return true;
         }
+        return false;
     }
 
+    /**
+     * check if all the ships are sunk.
+     * 
+     * @returns {boolean} returns true if all the ships are sunk.
+     */
     const areAllSunk = () => {
         let lastSunk = true;
         let actualSunk = true;
