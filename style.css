@@ -1,16 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+
+/* :root {
+	--color-light-orange: rgb(0, 125, 125);
+} */
+
+html {
+	box-sizing: border-box;
+	font-family: 'Roboto', sans-serif, Georgia;
+}
+
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
 .bodygrid {
     display: grid;
-    grid-template-rows: max(15vh, 50px) max(70vh, 400px) max(15vh, 50px);
+    grid-template-rows: max(14.5vh, 50px) max(80vh, 400px) max(4.5vh, 50px);
 }
 
 header {
     border: 1px solid black;
+    /* box-shadow: 0px 0px 20px rgb(0, 125, 125); For Later */ 
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 main {
     border: 1px solid black;
+
+    font-size: 1em;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 footer {
-    border: 1px solid black;
+    border-top: 1px solid black;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header__Title {
+    margin: 0;
+    font-size: 5em;
+}
+
+.main__playButton {
+    font-size: 3em;
+
+    padding: 10px 20px;
+
+    background-color: #FFF;
+	border: 1px solid #FFF;
+
+    cursor: pointer;
+
+    font-weight: 800;
+
+}
+
+.main__playButton:hover {
+    border-bottom: 1px solid #000;
+}
+
+.main__playButton:active {
+
 }
