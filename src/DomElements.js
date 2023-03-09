@@ -1,3 +1,5 @@
+import './styles/domElements.css';
+
 class DomElements {
     constructor(){
         this.mainContent = document.getElementById("main__content");
@@ -20,4 +22,5 @@ class DomElements {
 
 // <button class="main__playButton">Play</button>
 
-module.exports = DomElements;
+//module.exports = DomElements;
+export default DomElements;

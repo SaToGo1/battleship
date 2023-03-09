@@ -49,25 +49,3 @@ footer {
     margin: 0;
     font-size: 5em;
 }
-
-.main__playButton {
-    font-size: 3em;
-
-    padding: 10px 20px;
-
-    background-color: #FFF;
-	border: 1px solid #FFF;
-
-    cursor: pointer;
-
-    font-weight: 800;
-
-}
-
-.main__playButton:hover {
-    border-bottom: 1px solid #000;
-}
-
-.main__playButton:active {
-
-}
