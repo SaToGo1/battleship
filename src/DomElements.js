@@ -10,6 +10,7 @@ class DomElements {
         let playButton = document.createElement('button')
         playButton.textContent = "Play"
         playButton.classList.add('main__playButton')
+        playButton.id = "playButton"
         return playButton;
     }
 
@@ -94,6 +95,18 @@ class DomElements {
         let playButton = this._buildPlayButton();
         // this.mainContent.innerHTML = " ";
         this.mainContent.appendChild(playButton);
+    }
+
+    //Getters for DOM ELEMENTS
+    /**
+     * returns the playButton element, if it does not exist returns 
+     * null, a Falsy value.
+     * 
+     * @returns DOMElement or null(falsy value)
+     */
+    getPlayButton(){
+        let playButton = document.getElementById('playButton');
+        return playButton;
     }
 }
 
