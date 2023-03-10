@@ -95,9 +95,6 @@ class DomElements {
         // this.mainContent.innerHTML = " ";
         this.mainContent.appendChild(playButton);
     }
-
-
-    
 }
 
 // <button class="main__playButton">Play</button>
