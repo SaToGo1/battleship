@@ -1,12 +1,16 @@
-//const DomElementsModule = require("./DomElements");
 import DomElementsModule from './DomElements';
 
+const DomEventsModule = require("./DomEvents");
+
 let DomElements = new DomElementsModule();
-// DomElements.loadPlayScreen();
-// DomElements.loadBoardScreen();
+let DomEvents = new DomEventsModule();
 
 // This will be normalFlow
 DomElements.loadPlayScreen();
 let playButton = DomElements.getPlayButton();
-// DomEvents.setPlayButtonEvent(playButton, cb);
+DomEvents.setButtonClickEvent(playButton, gameFlow);
 // cb => Game function.
+
+function gameFlow() {
+    console.log('hi')
+}
