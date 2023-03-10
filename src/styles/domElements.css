@@ -44,8 +44,10 @@
     height: 100%;
 
     display: flex;
+    gap: 20px;
+    justify-content: space-around;
 }
 
 .divPlayer {
-    
+
 }
