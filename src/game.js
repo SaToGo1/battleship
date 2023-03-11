@@ -1,20 +1,71 @@
 const PlayerFactory = require("./player");
 const GameboardFactory = require("./gameboard");
 
-// Initialize Players
-const player1 = PlayerFactory();
-const player2 = PlayerFactory();
+const PLAYER = "player"
+const COMPUTER = "computer"
 
-// Initialize GameBoards
-const gameBoard1 = GameboardFactory();
-const gameBoard2 = GameboardFactory();
+class Game {
+    constructor() {
+        // Initialize Players
+        this.player = PlayerFactory();
+        this.computer = PlayerFactory();
 
-// Temporary we set 3 ships
-gameBoard1.placeShip(1,1,5,false);
-gameBoard1.placeShip(3,3,4,true);
-gameBoard1.placeShip(6,6,3,false);
+        // Initialize GameBoards
+        this.gameBoardPlayer = GameboardFactory();
+        this.gameBoardComputer = GameboardFactory();
 
-gameBoard2.placeShip(1,1,5,false);
-gameBoard2.placeShip(3,3,4,true);
-gameBoard2.placeShip(6,6,3,false);
+        // Temporary we set 3 ships in each board
+        gameBoard1.placeShip(1,1,5,false);
+        gameBoard1.placeShip(3,3,4,true);
+        gameBoard1.placeShip(6,6,3,false);
 
+        gameBoard2.placeShip(1,1,5,false);
+        gameBoard2.placeShip(3,3,4,true);
+        gameBoard2.placeShip(6,6,3,false);
+
+        this.actualTurn = PLAYER;
+
+        // saves the winner of the game
+        this.winner = null;
+    }
+
+
+    mainGameLoop(){
+        
+        // while ( PLAYING THE GAME ) // winner == null
+
+        // Player Turn
+        if(this.actualTurn == PLAYER){
+            console.log("player Turn");
+        
+            // change turn at the end
+            this.actualTurn = COMPUTER
+        // Computer Turn
+        }else{
+            console.log("computer Turn");
+
+            // change turn at the end
+            this.actualTurn = PLAYER
+        }
+
+        // ENDWHILE
+
+        // if( WINNER = PERSON) this.winscreen()
+        // if( WINNER = COMPUTER) this.losescreen()
+    }
+}
+
+
+
+
+
+// constructor(domElements, domEvents)
+// actualTurn= 'player' 'computer'
+// MainGameLoop()
+// player turn()
+// Computer turn()
+// win condition()
+
+// win() -> winscreen()
+// lose() -> losecreen()
+//   --> retry and play.
