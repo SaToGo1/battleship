@@ -1,3 +1,7 @@
+/*###############
+  # PLAY SCREEN # 
+  ############### */
+  
 .main__playButton {
     width: 140px;
     font-size: 3em;
@@ -22,30 +26,9 @@
     font-size: 2.8em;
 }
 
-.main__retryButton{
-    width: 140px;
-
-    padding: 10px 20px;
-
-    background-color: #FFF;
-	border: 1px solid #FFF;
-
-    cursor: pointer;
-}
-
-.main__retryButton:hover {
-    border-bottom: 1px solid #000;
-}
-
-.main__retryButton:active {
-    width: 120px;
-    font-size: 2.8em;
-}
-
-.main__retryButton-IMG {
-    width: 100%;
-}
-
+/*################ 
+  # BOARD SCREEN # 
+  ################ */
 .board{
     width: 500px;
     height: 500px;
@@ -74,3 +57,45 @@
 /*.divPlayer {
 
 }*/
+
+/*################ 
+  # RETRY SCREEN # 
+  ################*/
+.retrydiv {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+.main__retryButton{
+    width: 140px;
+
+    padding: 10px 20px;
+
+    background-color: #FFF;
+	border: 1px solid #FFF;
+
+    cursor: pointer;
+}
+
+.main__retryButton:hover {
+    border-bottom: 1px solid #000;
+}
+
+.main__retryButton:active {
+    width: 120px;
+    font-size: 2.8em;
+}
+
+.main__retryButton-IMG {
+    width: 100%;
+}
+
+.retrymessage {
+    margin: 0;
+    font-size: 2em;
+    text-align: center;
+
+    font-weight: 800;
+}

@@ -46,6 +46,29 @@ class DomElements {
         return retryButton;
     }
 
+    _RetryUI(message){
+        /*
+        <div>           -> retryDiv
+            <p></p>         -> You win / Lose
+            <button>        -> Retry button
+        </div>
+        */
+
+        let retrydiv = document.createElement('div');
+        retrydiv.classList.add("retrydiv");
+
+        let retryMessage = document.createElement('p');
+        retryMessage.classList.add("retrymessage");
+        retryMessage.textContent = message;
+
+        let retryButton = this._buildRetryButton();
+        
+        retrydiv.appendChild(retryMessage);
+        retrydiv.appendChild(retryButton);
+        
+        return retrydiv;
+    }
+
     _GameUI() {
         /*
         <div>               -> gameUIdiv
@@ -112,14 +135,13 @@ class DomElements {
         this.mainContent.appendChild(playButton);
     }
 
-    loadRetryScreen() {
-        // Reset mainContent and ready for the play screen.
+    loadRetryScreen(message) {
         this.mainContent.innerHTML = '';
         this.mainContent.style["min-width"] = "0";
         this.mainContent.style["min-height"] = "0";
 
-        let retryButton = this._buildRetryButton();
-        this.mainContent.appendChild(retryButton);
+        let retryDiv = this._RetryUI(message);
+        this.mainContent.appendChild(retryDiv);
     }
 
     //Getters for DOM ELEMENTS
