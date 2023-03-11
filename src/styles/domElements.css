@@ -22,6 +22,29 @@
     font-size: 2.8em;
 }
 
+.main__retryButton{
+    width: 140px;
+
+    padding: 10px 20px;
+
+    background-color: #FFF;
+	border: 1px solid #FFF;
+
+    cursor: pointer;
+}
+
+.main__retryButton:hover {
+    border-bottom: 1px solid #000;
+}
+
+.main__retryButton:active {
+    width: 120px;
+    font-size: 2.8em;
+}
+
+.main__retryButton-IMG {
+    width: 100%;
+}
 
 .board{
     width: 500px;

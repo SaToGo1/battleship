@@ -8,10 +8,14 @@ let DomEvents = new DomEventsModule();
 
 DomElements.loadPlayScreen();
 
-let playButton = DomElements.getPlayButton();
-DomEvents.setButtonClickEvent(playButton, gameFlow);
+DomElements.loadRetryScreen();
+let retryButton = DomElements.getRetryButton();
+DomEvents.setButtonClickEvent(retryButton, gameFlow);
+
+// let playButton = DomElements.getPlayButton();
+// DomEvents.setButtonClickEvent(playButton, gameFlow);
 
 function gameFlow() {
     DomElements.loadBoardScreen();
-    console.log('hi')
+    console.log('hi gameFlow() index.js')
 }
