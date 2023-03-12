@@ -22,9 +22,9 @@ class Game {
         this.gameBoardPlayer.placeShip(6,6,3,false);
 
 
-        this.gameBoardComputer.placeShip(1,1,5,false);
-        this.gameBoardComputer.placeShip(3,3,4,true);
-        this.gameBoardComputer.placeShip(6,6,3,false);
+        this.gameBoardComputer.placeShip(1,1,5,true);
+        this.gameBoardComputer.placeShip(3,3,4,false);
+        this.gameBoardComputer.placeShip(6,6,3,true);
 
         this.actualTurn = PLAYER;
 

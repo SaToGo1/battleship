@@ -2,10 +2,10 @@ const ShipFactory = require("./ship");
 
 const GameboardFactory = () => {
     // Properties
-    _size = 10; // The size of the grid will be 10x10
+    let _size = 10; // The size of the grid will be 10x10
 
     // here we will save all the ships in the board.
-    _ships = [];
+    let _ships = [];
 
     // board setting 10x10 matrix, with 0
     // 0 => cell is not hit.
@@ -13,7 +13,7 @@ const GameboardFactory = () => {
     // 2 => cell is hit.
     // 3 => ship hit.
     // coordinates-> _hitsBoard[y][x] / first y then x
-    _hitsBoard = [];
+    let _hitsBoard = [];
     for(let y = 0; y < 10; y++){
         _hitsBoard.push([])
         _hitsBoard[y].push(0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
@@ -23,7 +23,7 @@ const GameboardFactory = () => {
     // the ship index on _ships array if that cell
     // has a Ship.
     // coordinates-> _shipsBoard[y][x] / first y then x
-    _shipsBoard = [];
+    let _shipsBoard = [];
     for(let y = 0; y < 10; y++){
         _shipsBoard.push([])
         _shipsBoard[y].push(-1, -1, -1, -1, -1, -1, -1, -1, -1, -1);
