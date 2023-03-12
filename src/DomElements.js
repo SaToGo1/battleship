@@ -138,9 +138,19 @@ class DomElements {
         return retrydiv;
     }
 
+    /**
+     * Creates the two boards of the player and computer to display from the 
+     * data of the boards and display the name up in every board.
+     * 
+     * @param {Object Gameboard} gameboardPlayer gameboard of the player
+     * @param {Object Gameboard} gameboardComputer gameboard of the computer
+     * @returns DomElements with the two boards and two 
+     */
     _GameUI(gameboardPlayer, gameboardComputer) {
         /*
         <div>               -> gameUIdiv
+            <div>               -> Turn title
+            </div>
             <div>               -> player1div
                 <h2></h2>           -> player title
                 <div> ... </div>    -> BOARD
@@ -168,7 +178,7 @@ class DomElements {
         player2Title.textContent = "Player 2";
 
         let board1 = this._buildPlayerBoard(gameboardPlayer);
-        let board2 = this._buildPlayerBoard(gameboardComputer);      //############################# this will be computer
+        let board2 = this._buildComputerBoard(gameboardComputer);
 
         divPlayer1.appendChild(player1Title);
         divPlayer1.appendChild(board1);
@@ -182,13 +192,92 @@ class DomElements {
         return gameUIdiv;
     }
 
+    /**
+     * Builds a DOMElement with a text that indicates who belongs the turn to, both 
+     * of the boards and which belongs to which player, and a Legend that shows what
+     * means every symbol in the board.
+     * 
+     * @param {Object Gameboard} gameboardPlayer gameboard of the player
+     * @param {Object Gameboard} gameboardComputer gameboard of the computer
+     * @returns DomElement with the game interface.
+     */
+    _GameScreen(gameboardPlayer, gameboardComputer){
+        /*
+        <div>       -> GameScreen
+            <div>       -> turn div
+                ...
+            </div>
+
+            <div>       -> gameUIdiv  
+                ...
+            </div>
+
+            <div>       -> Legend
+                ...
+            </div>
+        </div>
+        */
+        let gameScreen = document.createElement('div');
+        gameScreen.classList.add("gameScreen");
+
+        let turnDiv = this._turnDiv();
+
+        let GameUI = this._GameUI(gameboardPlayer, gameboardComputer);
+
+        let LegendDiv = this._LegendDiv();
+
+        gameScreen.appendChild(turnDiv);
+        gameScreen.appendChild(GameUI);
+        gameScreen.appendChild(LegendDiv);
+
+        return gameScreen;
+
+
+    }
+
+    _turnDiv(){
+        let turnDiv = document.createElement('div');
+        turnDiv.classList.add("turnDiv");
+        let turnTitle = document.createElement('h2');
+        turnTitle.classList.add("turnTitle");
+        turnTitle.textContent = "your turn"         // This will be defined by an argument in the future.
+
+        turnDiv.appendChild(turnTitle);
+
+        return turnDiv;
+    }
+
+    _LegendDiv(){
+        let LegendDiv = document.createElement('div');
+        LegendDiv.classList.add("legendDiv")
+
+        let LegendTitle = document.createElement('h4');
+        LegendTitle.textContent = ("Legend");
+
+        LegendDiv.appendChild(LegendTitle);
+
+        let simbol1 = document.createElement('p');
+        simbol1.textContent = "#  ->  Your Ship"
+        let simbol2 = document.createElement('p');
+        simbol2.textContent = "•  ->  Water Hit"
+        let simbol3 = document.createElement('p');
+        simbol3.textContent = "X  ->  Ship Hit"
+
+        LegendDiv.appendChild(simbol1);
+        LegendDiv.appendChild(simbol2);
+        LegendDiv.appendChild(simbol3);
+
+        return LegendDiv;
+    }
+
     loadBoardScreen(gameboardPlayer, gameboardComputer){
         // Reset mainContent and ready for the board screen.
         this.mainContent.innerHTML = '';
         this.mainContent.style["min-width"] = "100%";
         this.mainContent.style["min-height"] = "100%";
 
-        let gameUIdiv = this._GameUI(gameboardPlayer, gameboardComputer);
+        let gameUIdiv = this._GameScreen(gameboardPlayer, gameboardComputer);
+        //let gameUIdiv = this._GameUI(gameboardPlayer, gameboardComputer);
 
         this.mainContent.appendChild(gameUIdiv);
     }
