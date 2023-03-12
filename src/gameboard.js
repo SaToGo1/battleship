@@ -11,6 +11,7 @@ function GameboardFactory(){
     // 0 => cell is not hit.
     // 1 => cell has a Ship that is not hit.
     // 2 => cell is hit.
+    // 3 => ship hit.
     // coordinates-> _hitsBoard[y][x] / first y then x
     _hitsBoard = [];
     for(let y = 0; y < 10; y++){
@@ -92,7 +93,7 @@ function GameboardFactory(){
         if( (y>0 && x>0) && (y<_size && x<_size)){
             // Hit the ship
             if(_hitsBoard[y][x] === 1){ 
-                _hitsBoard[y][x] = 2;     
+                _hitsBoard[y][x] = 3;     
 
                 let shipIndex = _shipsBoard[y][x];
                 let shipHitted = _ships[shipIndex];
