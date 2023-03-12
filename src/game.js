@@ -1,3 +1,5 @@
+//import DomElementsModule from './DomElements';
+
 const PlayerFactory = require("./player");
 const GameboardFactory = require("./gameboard");
 
@@ -15,13 +17,13 @@ class Game {
         this.gameBoardComputer = GameboardFactory();
 
         // Temporary we set 3 ships in each board
-        gameBoard1.placeShip(1,1,5,false);
-        gameBoard1.placeShip(3,3,4,true);
-        gameBoard1.placeShip(6,6,3,false);
+        this.gameBoardPlayer.placeShip(1,1,5,false);
+        this.gameBoardPlayer.placeShip(3,3,4,true);
+        this.gameBoardPlayer.placeShip(6,6,3,false);
 
-        gameBoard2.placeShip(1,1,5,false);
-        gameBoard2.placeShip(3,3,4,true);
-        gameBoard2.placeShip(6,6,3,false);
+        this.gameBoardComputer.placeShip(1,1,5,false);
+        this.gameBoardComputer.placeShip(3,3,4,true);
+        this.gameBoardComputer.placeShip(6,6,3,false);
 
         this.actualTurn = PLAYER;
 
@@ -31,7 +33,7 @@ class Game {
 
 
     mainGameLoop(){
-        
+
         // while ( PLAYING THE GAME ) // winner == null
 
         // Player Turn
@@ -44,6 +46,7 @@ class Game {
         }else{
             console.log("computer Turn");
 
+            // winner = gameBoard all sunk? 
             // change turn at the end
             this.actualTurn = PLAYER
         }
@@ -53,8 +56,18 @@ class Game {
         // if( WINNER = PERSON) this.winscreen()
         // if( WINNER = COMPUTER) this.losescreen()
     }
+
+    // Getters
+    getPlayerBoard() {
+        return this.gameBoardPlayer
+    }
+    
+    getComputerBoard() {
+        return this.gameBoardComputer
+    }
 }
 
+module.exports = Game
 
 
 

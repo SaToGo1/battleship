@@ -14,7 +14,7 @@ class DomElements {
         return playButton;
     }
 
-    _buildBoard(){
+    _buildBoard(gameboard){
         let x = 10
         let y = 10;
         let total = x*y;
@@ -69,7 +69,7 @@ class DomElements {
         return retrydiv;
     }
 
-    _GameUI() {
+    _GameUI(gameboardPlayer, gameboardComputer) {
         /*
         <div>               -> gameUIdiv
             <div>               -> player1div
@@ -98,8 +98,8 @@ class DomElements {
         let player2Title = document.createElement('h2');
         player2Title.textContent = "Player 2";
 
-        let board1 = this._buildBoard();
-        let board2 = this._buildBoard();
+        let board1 = this._buildBoard(gameboardPlayer);
+        let board2 = this._buildBoard(gameboardComputer);
 
         divPlayer1.appendChild(player1Title);
         divPlayer1.appendChild(board1);
@@ -113,13 +113,13 @@ class DomElements {
         return gameUIdiv;
     }
 
-    loadBoardScreen(){
+    loadBoardScreen(gameboardPlayer, gameboardComputer){
         // Reset mainContent and ready for the board screen.
         this.mainContent.innerHTML = '';
         this.mainContent.style["min-width"] = "100%";
         this.mainContent.style["min-height"] = "100%";
 
-        let gameUIdiv = this._GameUI();
+        let gameUIdiv = this._GameUI(gameboardPlayer, gameboardComputer);
 
         this.mainContent.appendChild(gameUIdiv);
     }
