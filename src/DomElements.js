@@ -5,6 +5,11 @@ class DomElements {
         this.mainContent = document.getElementById("main__content");
     }
 
+    /**
+     * Creates and returns the play button.
+     * 
+     * @returns DomElement button
+     */
     _buildPlayButton(){
 
         let playButton = document.createElement('button')
@@ -14,21 +19,85 @@ class DomElements {
         return playButton;
     }
 
-    _buildBoard(gameboard){
-        let x = 10
-        let y = 10;
-        let total = x*y;
+    /**
+     * Recieve the gameboard and builds the Board that will be shown on screen
+     * for the player.
+     * 
+     * @param {Object Gameboard} gameboard 
+     * @returns DomElement return the DOMElement that represents the Board.
+     */
+    _buildPlayerBoard(gameboard){
+        let sizeX = gameboard.getSize();
+        let sizeY = gameboard.getSize();
+        let total = sizeX*sizeY;
 
         let board = document.createElement("div");
         board.classList.add("board")
 
-        for(let i = 0; i < (x*y); i++){
-            let cell = document.createElement("div");
-            cell.classList.add("cell");
-            board.appendChild(cell);
+        
+        for(let y = 0; y < sizeY; y++){
+            for (let x = 0; x < sizeX; x++){
+                let cellInfo = gameboard.getCellYX(y, x);
+                let cell = document.createElement("div");
+                cell.classList.add("cell");
+                this._cellContent(cellInfo, cell, true);
+                board.appendChild(cell);
+            }
         }
 
         return board;
+    }
+    
+    /**
+     * Recieve the gameboard and builds the Board that will be shown on screen
+     * for the computer.
+     * 
+     * @param {Object Gameboard} gameboard 
+     * @returns DomElement return the DOMElement that represents the Board.
+     */
+    _buildComputerBoard(gameboard){
+        let sizeX = gameboard.getSize();
+        let sizeY = gameboard.getSize();
+        let total = sizeX*sizeY;
+
+        let board = document.createElement("div");
+        board.classList.add("board")
+
+        
+        for(let y = 0; y < sizeY; y++){
+            for (let x = 0; x < sizeX; x++){
+                let cellInfo = gameboard.getCellYX(y, x);
+                let cell = document.createElement("div");
+                cell.classList.add("cell");
+                this._cellContent(cellInfo, cell, false);
+                board.appendChild(cell);
+            }
+        }
+
+        return board;
+    }
+
+    /**
+     * takes a cell and fills it with his content in function of if it's a water cel, a ship,
+     * a ship hitted or water hitted.
+     * 
+     * @param {Number} cellInfo contains number of the cell that indicates if it's water, ship, ...
+     * @param {DOMElement} cell DomElement of the cell we want to modify
+     * @param {Boolean} isPlayer true if this is the PlayerBoard
+     */
+    _cellContent(cellInfo, cell, isPlayer=false){
+        // Water cell == 0
+            cell.textContent = ""
+        // Ship cell
+        if(cellInfo == 1 && isPlayer){
+            cell.textContent = "#"
+        // Hit Water
+        }else if(cellInfo == 2){
+            cell.textContent = "•"
+        // Hit Ship
+        }else if(cellInfo == 3){
+            cell.textContent = "X"
+        }
     }
 
 
@@ -98,8 +167,8 @@ class DomElements {
         let player2Title = document.createElement('h2');
         player2Title.textContent = "Player 2";
 
-        let board1 = this._buildBoard(gameboardPlayer);
-        let board2 = this._buildBoard(gameboardComputer);
+        let board1 = this._buildPlayerBoard(gameboardPlayer);
+        let board2 = this._buildPlayerBoard(gameboardComputer);      //############################# this will be computer
 
         divPlayer1.appendChild(player1Title);
         divPlayer1.appendChild(board1);

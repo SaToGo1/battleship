@@ -1,6 +1,6 @@
 const ShipFactory = require("./ship");
 
-function GameboardFactory(){
+const GameboardFactory = () => {
     // Properties
     _size = 10; // The size of the grid will be 10x10
 
@@ -32,6 +32,14 @@ function GameboardFactory(){
     // Geters Setters
     const getBoard = () => {
         return _hitsBoard;
+    }
+
+    const getCellYX = (y, x) => {
+        return _hitsBoard[y][x];
+    }
+
+    const getSize = () => {
+        return _size;
     }
 
     // METHODS
@@ -132,10 +140,17 @@ function GameboardFactory(){
     }
 
     return {
+        // Getters
         getBoard,
+        getSize,
+        getCellYX,
+
+        // Methods
         placeShip,
         receiveAttack,
-        areAllSunk
+        areAllSunk,
+
+        _hitsBoard
     }
 }
 

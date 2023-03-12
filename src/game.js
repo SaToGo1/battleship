@@ -21,6 +21,7 @@ class Game {
         this.gameBoardPlayer.placeShip(3,3,4,true);
         this.gameBoardPlayer.placeShip(6,6,3,false);
 
+
         this.gameBoardComputer.placeShip(1,1,5,false);
         this.gameBoardComputer.placeShip(3,3,4,true);
         this.gameBoardComputer.placeShip(6,6,3,false);
@@ -29,6 +30,9 @@ class Game {
 
         // saves the winner of the game
         this.winner = null;
+
+        this.player.attackBoard(this.gameBoardComputer, 1, 1)
+        this.player.attackBoard(this.gameBoardComputer, 2, 1)
     }
 
 

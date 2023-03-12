@@ -1,5 +1,5 @@
 
-function Player(){
+const Player = () => {
 
     // Methods
     const attackBoard = (GB, y, x) => {

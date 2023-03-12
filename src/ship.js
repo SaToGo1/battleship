@@ -1,4 +1,4 @@
-function ShipFactory(length, numberHits=0){
+const ShipFactory = (length, numberHits=0) => {
     
     // PROPERTIES
     let _length = length;
@@ -34,7 +34,7 @@ function ShipFactory(length, numberHits=0){
         // (Logic) methods
         hit,
         isSunk
-    }
+    };
 }
 
 module.exports = ShipFactory;
