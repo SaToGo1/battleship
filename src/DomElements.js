@@ -219,6 +219,7 @@ class DomElements {
         */
         let gameScreen = document.createElement('div');
         gameScreen.classList.add("gameScreen");
+        gameScreen.id = "gameScreen";
 
         let turnDiv = this._turnDiv();
 
@@ -276,10 +277,10 @@ class DomElements {
         this.mainContent.style["min-width"] = "100%";
         this.mainContent.style["min-height"] = "100%";
 
-        let gameUIdiv = this._GameScreen(gameboardPlayer, gameboardComputer);
+        let gameScreen = this._GameScreen(gameboardPlayer, gameboardComputer);
         //let gameUIdiv = this._GameUI(gameboardPlayer, gameboardComputer);
 
-        this.mainContent.appendChild(gameUIdiv);
+        this.mainContent.appendChild(gameScreen);
     }
 
     loadPlayScreen(){
@@ -323,6 +324,15 @@ class DomElements {
      getRetryButton(){
         let retryButton = document.getElementById('retryButton');
         return retryButton;
+    }
+
+    printBoard(gameboardPlayer, gameboardComputer) {
+        let GameUI = this._GameUI(gameboardPlayer, gameboardComputer);
+        let gameScreen = document.getElementById("gameScreen");
+
+        gameScreen.append()
+
+
     }
 }
 

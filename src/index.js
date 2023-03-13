@@ -20,4 +20,19 @@ DomEvents.setButtonClickEvent(playButton, gameFlow);
 
 function gameFlow() {
     DomElements.loadBoardScreen(Game.getPlayerBoard(), Game.getComputerBoard());
+    // set Cell events
+
+    //FLOW
+    // WHILE NOT WINNER (get winner)
+        // onclick playerTurn()
+        // printScreen
+        // winCondition()
+        // computerTurn()
+        // printScreen
+        // winCondition()
+    // END WHILE
+
+    // get winner
+    // Reset Screen()
+
 }
