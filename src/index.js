@@ -38,7 +38,9 @@ function cellEvent(cell, y, x) {
     console.log(`y: ${y}`);
     console.log(`x: ${x}`);
 
-    Game.play(y, x);
+    Game.playerTurn(y, x);
+
+    Game.computerTurn();
 
     DomElements.printCell(cell,y,x, computerBoard);
     console.log(' ');

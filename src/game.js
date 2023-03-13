@@ -31,18 +31,12 @@ class Game {
         this.player.attackBoard(this.gameBoardComputer, 2, 1)
     }
 
-    play(y, x){
-        console.log('inside Game.play()')
-        // PLAYER TURN
+    playerTurn(y, x){
         this.player.attackBoard(this.gameBoardComputer, y, x);
-        // winCondition()
+    }
 
-        // COMPUTER TURN
+    computerTurn() {
         this.computer.computerPlays(this.gameBoardPlayer);
-        // winCondition()
-
-        // if( WINNER = PERSON) this.winscreen()
-        // if( WINNER = COMPUTER) this.losescreen()
     }
 
     // Getters
