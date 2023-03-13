@@ -14,6 +14,10 @@ describe('Player', () => {
         expect(GB.getBoard()).toEqual(boardAttacked1)
         player.attackBoard(GB, 1, 2);
         expect(GB.getBoard()).toEqual(boardAttacked2);
+        player.attackBoard(GB, 0, 0);
+        player.attackBoard(GB, 0, 9);
+        player.attackBoard(GB, 9, 0);
+        expect(GB.getBoard()).toEqual(boardAttacked3);
     })
 
     it('computerPlays', () => {
@@ -67,4 +71,18 @@ let boardAttacked2 =
  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+];
+
+let boardAttacked3 = 
+[
+ [2, 0, 0, 0, 0, 0, 0, 0, 0, 2],
+ [0, 3, 2, 0, 0, 0, 0, 0, 0, 0],
+ [0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+ [0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+ [0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+ [0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+ [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+ [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+ [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+ [2, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 ];

@@ -337,7 +337,9 @@ class DomElements {
     
     printCell(cell, y, x, gameboard){
         let cellInfo = gameboard.getCellYX(y, x);
+        console.log('hi')
         this._cellContent(cellInfo, cell, false);
+        console.log('hi')
     }
 
 

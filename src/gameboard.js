@@ -98,7 +98,7 @@ const GameboardFactory = () => {
      */
     const receiveAttack = (y, x) => {
         // y,x are out of the edges. we do nothing
-        if( (y>0 && x>0) && (y<_size && x<_size)){
+        if( (y>=0 && x>=0) && (y<=_size && x<=_size)){
             // Hit the ship
             if(_hitsBoard[y][x] === 1){ 
                 _hitsBoard[y][x] = 3;     

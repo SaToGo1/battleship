@@ -43,3 +43,10 @@ function cellEvent(cell, y, x) {
     DomElements.printCell(cell,y,x, computerBoard);
     console.log(' ');
 }
+
+// instead of Game.play will do
+// Game.playerTurn();
+// Game.ComputerTurn();
+// Game.wincondition();
+// so we have more control on the returns of Game so we can
+// call the appropiate DomElements from index.js
