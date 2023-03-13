@@ -111,7 +111,7 @@ const GameboardFactory = () => {
             }else if(_hitsBoard[y][x] === 0){
                 _hitsBoard[y][x] = 2;
                 
-            // Cell already hit (cell === 2 )
+            // Cell already hit (cell === 2 or cell === 3 )
             }else{ 
                 return false;
             }

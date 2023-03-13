@@ -335,20 +335,8 @@ class DomElements {
         this.mainContent.appendChild(retryDiv);
     }
     
-
-    // ***** Should be changed if possible so it only changes the cell modified on attack *****
-    /**
-     * gets the gameboard data and converts it into gameboard on screen.
-     * only prints the two board and the name of the players.
-     * 
-     * @param {gameboard} gameboardPlayer gameboard of the player
-     * @param {gameboard} gameboardComputer gameboard of the computer
-     */
-    printBoard(gameboardPlayer, gameboardComputer) {
-        let GameUI = this._GameUI(gameboardPlayer, gameboardComputer);
-        let gameScreen = document.getElementById("gameScreen");
-
-        gameScreen.append()
+    printCell(cell){
+        return ":D";
     }
 
 

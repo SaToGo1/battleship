@@ -11,14 +11,14 @@ let Game = new GameModule();
 // LOAD PLAY SCREEN
 DomElements.loadPlayScreen();
 let playButton = DomElements.getPlayButton();
-DomEvents.setButtonClickEvent(playButton, gameFlow);
+DomEvents.setButtonClickEvent(playButton, gameStart);
 
 // LOAD RETRY SCREEN
 // DomElements.loadRetryScreen('win');
 // let retryButton = DomElements.getRetryButton();
 // DomEvents.setButtonClickEvent(retryButton, gameFlow);
 
-function gameFlow() {
+function gameStart() {
     let playerBoard = Game.getPlayerBoard();
     let computerBoard = Game.getComputerBoard()
 
@@ -30,9 +30,17 @@ function gameFlow() {
 }
 
 function cellEvent(cell, y, x) {
+    // TEMPORAL
+    // ------
+    let playerBoard = Game.getPlayerBoard();
+    let computerBoard = Game.getComputerBoard()
+    // ------
+
     console.log('cell Event activated');
     console.log(`cell: ${cell}`);
     console.log(`y: ${y}`);
     console.log(`x: ${x}`);
+
+    Game.play(y, x);
     console.log(' ');
 }

@@ -17,7 +17,7 @@ const Player = () => {
             let x = Math.floor(Math.random() * 10);
             let y = Math.floor(Math.random() * 10);
 
-            attackExecuted = GB.receiveAttack(y, x)
+            attackExecuted = GB.receiveAttack(y, x);
         }
     }
 

@@ -31,12 +31,15 @@ class Game {
         this.player.attackBoard(this.gameBoardComputer, 2, 1)
     }
 
-    play(){
-        console.log("player Turn");
-        
-        console.log("computer Turn");
+    play(y, x){
+        console.log('inside Game.play()')
+        // PLAYER TURN
+        this.player.attackBoard(this.gameBoardComputer, y, x);
+        // winCondition()
 
-        // ENDWHILE
+        // COMPUTER TURN
+        this.computer.computerPlays(this.gameBoardPlayer);
+        // winCondition()
 
         // if( WINNER = PERSON) this.winscreen()
         // if( WINNER = COMPUTER) this.losescreen()
@@ -59,7 +62,5 @@ class Game {
 module.exports = Game
 
 
-
-// player turn()
-// Computer turn()
+// TODO
 // win condition()
