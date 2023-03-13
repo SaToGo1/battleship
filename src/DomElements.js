@@ -257,11 +257,11 @@ class DomElements {
         LegendDiv.appendChild(LegendTitle);
 
         let simbol1 = document.createElement('p');
-        simbol1.textContent = "#  ->  Your Ship"
+        simbol1.textContent = "[ # ]  ->  Your Ship"
         let simbol2 = document.createElement('p');
-        simbol2.textContent = "•  ->  Water Hit"
+        simbol2.textContent = "[ • ]  ->  Water Hit"
         let simbol3 = document.createElement('p');
-        simbol3.textContent = "X  ->  Ship Hit"
+        simbol3.textContent = "[ X ]  ->  Ship Hit"
 
         LegendDiv.appendChild(simbol1);
         LegendDiv.appendChild(simbol2);

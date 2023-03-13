@@ -64,10 +64,13 @@
     width: 100%;
     height: 100%;
 
-    display: flex;
+    display: grid;
+    grid-template-rows: 5% 85% 10%;
+
+    /* Flex works*/
+    /* display: flex;
     flex-direction: column;
-    
-    gap: 20px;
+    gap: 20px; */
 }
 
 .turnDiv {
@@ -83,16 +86,26 @@
 
 .legendDiv {
     margin-left: 40px;
+    margin-top: 10px;
+
+    width: 500px;
+
+    background-color: #3332;
+
+    display: flex;
 }
 
 .legendDiv h4{
     margin: 0;
     margin-bottom: 8px;
+    margin-right: 40px;
+    background-color: #3334;
 }
 
 .legendDiv p {
     margin: 0;
     margin-bottom: 4px;
+    margin-right: 20px;
 }
 /*.divPlayer {
 
