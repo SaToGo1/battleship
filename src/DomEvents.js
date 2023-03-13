@@ -16,6 +16,18 @@ class DomEvents {
             button.addEventListener('click', cb);
         }
     }
+
+    setCellsEvent(cellArray, boardSize, cb){
+        for(let i = 0; i < cellArray.length; i++){
+            let x = i % boardSize;
+            let y = Math.floor(i / boardSize) * (boardSize / 10);
+            let cell = cellArray[i];
+
+            cell.addEventListener('click', () => {
+                cb(cell, y, x);
+            });
+        }
+    }
 }
 
 module.exports = DomEvents

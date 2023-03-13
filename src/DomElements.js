@@ -78,7 +78,7 @@ class DomElements {
                 let cellInfo = gameboard.getCellYX(y, x);
                 let cell = document.createElement("div");
                 cell.classList.add("cell");
-                cell.classList.add("cellComputer");
+                cell.classList.add("computerCells");
                 this._cellContent(cellInfo, cell, false);
                 board.appendChild(cell);
             }
@@ -383,7 +383,7 @@ class DomElements {
 
     getCellArray(){
         // We get all the cells in the computer Board.
-        let CellArray = document.getElementsByClassName('cellComputer')
+        let CellArray = document.getElementsByClassName('computerCells')
         return CellArray;
     }
 

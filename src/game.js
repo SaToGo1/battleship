@@ -31,30 +31,16 @@ class Game {
         this.player.attackBoard(this.gameBoardComputer, 2, 1)
     }
 
-    // Play(){
-
-    //     // while ( PLAYING THE GAME ) // winner == null
-
-    //     // Player Turn
-    //     if(this.actualTurn == PLAYER){
-    //         console.log("player Turn");
+    play(){
+        console.log("player Turn");
         
-    //         // change turn at the end
-    //         this.actualTurn = COMPUTER
-    //     // Computer Turn
-    //     }else{
-    //         console.log("computer Turn");
+        console.log("computer Turn");
 
-    //         // winner = gameBoard all sunk? 
-    //         // change turn at the end
-    //         this.actualTurn = PLAYER
-    //     }
+        // ENDWHILE
 
-    //     // ENDWHILE
-
-    //     // if( WINNER = PERSON) this.winscreen()
-    //     // if( WINNER = COMPUTER) this.losescreen()
-    // }
+        // if( WINNER = PERSON) this.winscreen()
+        // if( WINNER = COMPUTER) this.losescreen()
+    }
 
     // Getters
     getPlayerBoard() {

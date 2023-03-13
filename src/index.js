@@ -19,28 +19,20 @@ DomEvents.setButtonClickEvent(playButton, gameFlow);
 // DomEvents.setButtonClickEvent(retryButton, gameFlow);
 
 function gameFlow() {
-    DomElements.loadBoardScreen(Game.getPlayerBoard(), Game.getComputerBoard());
+    let playerBoard = Game.getPlayerBoard();
+    let computerBoard = Game.getComputerBoard()
+
+    DomElements.loadBoardScreen(playerBoard, computerBoard);
+    
     // set Cell events
     let cellArray = DomElements.getCellArray();
-    
+    DomEvents.setCellsEvent(cellArray, computerBoard.getSize(), cellEvent);
+}
 
-    // while we don't have a winner the game keep going.
-    // getWinner() is by default null !(null) == true
-    // while get winner is null the game continue
-    // when we have a winner getWinner = string the game ends
-    while(!(Game.getWinner())){
-        break;
-    }
-    // WHILE NOT WINNER (get winner)
-        // onclick playerTurn()
-        // printScreen
-        // winCondition()
-        // computerTurn()
-        // printScreen
-        // winCondition()
-    // END WHILE
-
-    // get winner
-    // Reset Screen()
-
+function cellEvent(cell, y, x) {
+    console.log('cell Event activated');
+    console.log(`cell: ${cell}`);
+    console.log(`y: ${y}`);
+    console.log(`x: ${x}`);
+    console.log(' ');
 }
