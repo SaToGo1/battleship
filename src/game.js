@@ -36,7 +36,8 @@ class Game {
     }
 
     computerTurn() {
-        this.computer.computerPlays(this.gameBoardPlayer);
+        let [x, y] = this.computer.computerPlays(this.gameBoardPlayer);
+        return [x, y];
     }
 
     // Getters
