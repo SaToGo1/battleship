@@ -21,8 +21,16 @@ DomEvents.setButtonClickEvent(playButton, gameFlow);
 function gameFlow() {
     DomElements.loadBoardScreen(Game.getPlayerBoard(), Game.getComputerBoard());
     // set Cell events
+    let cellArray = DomElements.getCellArray();
+    
 
-    //FLOW
+    // while we don't have a winner the game keep going.
+    // getWinner() is by default null !(null) == true
+    // while get winner is null the game continue
+    // when we have a winner getWinner = string the game ends
+    while(!(Game.getWinner())){
+        break;
+    }
     // WHILE NOT WINNER (get winner)
         // onclick playerTurn()
         // printScreen

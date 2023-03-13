@@ -64,6 +64,10 @@ class Game {
     getComputerBoard() {
         return this.gameBoardComputer
     }
+
+    getWinner(){
+        return this.winner;
+    }
 }
 
 module.exports = Game

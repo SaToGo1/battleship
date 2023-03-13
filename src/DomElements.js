@@ -1,9 +1,18 @@
 import './styles/domElements.css';
 
+
 class DomElements {
     constructor(){
         this.mainContent = document.getElementById("main__content");
     }
+
+
+    // ####################
+    // ####################
+    // # Privated Methods # 
+    // ####################
+    // ####################
+
 
     /**
      * Creates and returns the play button.
@@ -69,6 +78,7 @@ class DomElements {
                 let cellInfo = gameboard.getCellYX(y, x);
                 let cell = document.createElement("div");
                 cell.classList.add("cell");
+                cell.classList.add("cellComputer");
                 this._cellContent(cellInfo, cell, false);
                 board.appendChild(cell);
             }
@@ -271,6 +281,21 @@ class DomElements {
         return LegendDiv;
     }
 
+
+    // ##################
+    // ##################
+    // # Public Methods # 
+    // ##################
+    // ##################
+
+
+    /**
+     * gets the gameboard data and converts it into gameboard on screen.
+     * This creates the elements of all the screen .
+     * 
+     * @param {gameboard} gameboardPlayer gameboard of the player
+     * @param {gameboard} gameboardComputer gameboard of the computer
+     */
     loadBoardScreen(gameboardPlayer, gameboardComputer){
         // Reset mainContent and ready for the board screen.
         this.mainContent.innerHTML = '';
@@ -283,6 +308,9 @@ class DomElements {
         this.mainContent.appendChild(gameScreen);
     }
 
+    /**
+     * Loads the screen with the play button.
+     */
     loadPlayScreen(){
         // Reset mainContent and ready for the play screen.
         this.mainContent.innerHTML = '';
@@ -294,6 +322,10 @@ class DomElements {
         this.mainContent.appendChild(playButton);
     }
 
+    /**
+     * loads the screen with the Retry buttons and display the winners
+     * @param {string} message display "Win" / "Lose"
+     */
     loadRetryScreen(message) {
         this.mainContent.innerHTML = '';
         this.mainContent.style["min-width"] = "0";
@@ -302,8 +334,31 @@ class DomElements {
         let retryDiv = this._RetryUI(message);
         this.mainContent.appendChild(retryDiv);
     }
+    
 
-    //Getters for DOM ELEMENTS
+    // ***** Should be changed if possible so it only changes the cell modified on attack *****
+    /**
+     * gets the gameboard data and converts it into gameboard on screen.
+     * only prints the two board and the name of the players.
+     * 
+     * @param {gameboard} gameboardPlayer gameboard of the player
+     * @param {gameboard} gameboardComputer gameboard of the computer
+     */
+    printBoard(gameboardPlayer, gameboardComputer) {
+        let GameUI = this._GameUI(gameboardPlayer, gameboardComputer);
+        let gameScreen = document.getElementById("gameScreen");
+
+        gameScreen.append()
+    }
+
+
+    // ############################
+    // ############################
+    // # Getters for DOM ELEMENTS # 
+    // ############################
+    // ############################
+
+
     /**
      * returns the playButton element, if it does not exist returns 
      * null, a Falsy value.
@@ -321,19 +376,18 @@ class DomElements {
      * 
      * @returns DOMElement(<button>)
      */
-     getRetryButton(){
+    getRetryButton(){
         let retryButton = document.getElementById('retryButton');
         return retryButton;
     }
 
-    printBoard(gameboardPlayer, gameboardComputer) {
-        let GameUI = this._GameUI(gameboardPlayer, gameboardComputer);
-        let gameScreen = document.getElementById("gameScreen");
-
-        gameScreen.append()
-
-
+    getCellArray(){
+        // We get all the cells in the computer Board.
+        let CellArray = document.getElementsByClassName('cellComputer')
+        return CellArray;
     }
+
+
 }
 
 // <button class="main__playButton">Play</button>
