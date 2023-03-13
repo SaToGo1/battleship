@@ -49,6 +49,7 @@ class DomElements {
                 let cellInfo = gameboard.getCellYX(y, x);
                 let cell = document.createElement("div");
                 cell.classList.add("cell");
+                cell.classList.add("playerCells");
                 this._cellContent(cellInfo, cell, true);
                 board.appendChild(cell);
             }
@@ -336,10 +337,10 @@ class DomElements {
     }
     
     printCell(cell, y, x, gameboard){
+        console.log('printCell1')
         let cellInfo = gameboard.getCellYX(y, x);
-        console.log('hi')
         this._cellContent(cellInfo, cell, false);
-        console.log('hi')
+        console.log('printCell2')
     }
 
 
@@ -374,8 +375,24 @@ class DomElements {
 
     getCellArray(){
         // We get all the cells in the computer Board.
-        let CellArray = document.getElementsByClassName('computerCells')
-        return CellArray;
+        let cellArray = document.getElementsByClassName('computerCells')
+        return cellArray;
+    }
+
+    getCellPlayerBoard(X, Y, board){
+        let cell;
+        let cellArray = document.getElementsByClassName('playerCells');
+        let boardSize = board.getSize();
+        for(let i = 0; i < cellArray.length; i++){
+            let x = i % boardSize;
+            let y = Math.floor(i / boardSize) * (boardSize / 10);   // Im not sure about the * (boardSize / 10) maybe this gives problems
+                                                                    // if size is bigger than 10 if that happens just delete that part.
+            if(x === X && y ===Y){
+                cell = cellArray[i];
+            }
+        }
+        console.log(cell)
+        return cell
     }
 
 

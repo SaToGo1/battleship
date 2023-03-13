@@ -33,13 +33,15 @@ function cellEvent(cell, y, x) {
     let playerBoard = Game.getPlayerBoard();
     let computerBoard = Game.getComputerBoard()
 
-    // the player attacks on the cell he clicked
+    // Player Attack + Print attacked Cell
     Game.playerTurn(y, x);
-    DomElements.printCell(cell,y,x, computerBoard);
-    
-    // computer attack on a cell and we get the coordinated of the attack.
+    DomElements.printCell(cell, y, x, computerBoard);
+
+    // Computer Attack + Print attacked Cell
     let [xComputerAttack, yComputerAttack] = Game.computerTurn();
-    console.log(' ');
+    let cell2 = DomElements.getCellPlayerBoard(xComputerAttack, yComputerAttack, playerBoard)
+    DomElements.printCell(cell2, yComputerAttack, xComputerAttack, playerBoard);
+
 }
 
 // instead of Game.play will do
