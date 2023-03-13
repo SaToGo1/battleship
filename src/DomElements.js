@@ -335,8 +335,9 @@ class DomElements {
         this.mainContent.appendChild(retryDiv);
     }
     
-    printCell(cell){
-        return ":D";
+    printCell(cell, y, x, gameboard){
+        let cellInfo = gameboard.getCellYX(y, x);
+        this._cellContent(cellInfo, cell, false);
     }
 
 

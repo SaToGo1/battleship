@@ -30,11 +30,8 @@ function gameStart() {
 }
 
 function cellEvent(cell, y, x) {
-    // TEMPORAL
-    // ------
     let playerBoard = Game.getPlayerBoard();
     let computerBoard = Game.getComputerBoard()
-    // ------
 
     console.log('cell Event activated');
     console.log(`cell: ${cell}`);
@@ -42,5 +39,7 @@ function cellEvent(cell, y, x) {
     console.log(`x: ${x}`);
 
     Game.play(y, x);
+
+    DomElements.printCell(cell,y,x, computerBoard);
     console.log(' ');
 }
