@@ -40,6 +40,18 @@ class Game {
         return [x, y];
     }
 
+    winCondition() {
+        if(this.gameBoardPlayer.areAllSunk()){
+            this.winner = COMPUTER;
+            return true;
+        }else if(this.gameBoardComputer.areAllSunk()){
+            this.winner = PLAYER;
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     // Getters
     getPlayerBoard() {
         return this.gameBoardPlayer

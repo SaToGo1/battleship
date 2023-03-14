@@ -13,11 +13,9 @@ DomElements.loadPlayScreen();
 let playButton = DomElements.getPlayButton();
 DomEvents.setButtonClickEvent(playButton, gameStart);
 
-// LOAD RETRY SCREEN
-// DomElements.loadRetryScreen('win');
-// let retryButton = DomElements.getRetryButton();
-// DomEvents.setButtonClickEvent(retryButton, gameFlow);
 
+// GameStart and cellEvent inside Game? DomElements and DomEvents
+// passed to cosntructor ?
 function gameStart() {
     let playerBoard = Game.getPlayerBoard();
     let computerBoard = Game.getComputerBoard()
@@ -33,20 +31,24 @@ function cellEvent(cell, y, x) {
     let playerBoard = Game.getPlayerBoard();
     let computerBoard = Game.getComputerBoard()
 
+    let win = true;
     // Player Attack + Print attacked Cell
     Game.playerTurn(y, x);
     DomElements.printCell(cell, y, x, computerBoard);
+    if(Game.winCondition()){
+        let winner = Game.getWinner();
+        DomElements.loadRetryScreen(`${winner} Win`);
+        return ;
+    } 
 
     // Computer Attack + Print attacked Cell
     let [xComputerAttack, yComputerAttack] = Game.computerTurn();
     let cell2 = DomElements.getCellPlayerBoard(xComputerAttack, yComputerAttack, playerBoard)
     DomElements.printCell(cell2, yComputerAttack, xComputerAttack, playerBoard);
+    if(Game.winCondition()){
+        let winner = Game.getWinner();
+        DomElements.loadRetryScreen(`${winner} Win`);
+        return ;
+    }
 
 }
-
-// instead of Game.play will do
-// Game.playerTurn();
-// Game.ComputerTurn();
-// Game.wincondition();
-// so we have more control on the returns of Game so we can
-// call the appropiate DomElements from index.js
