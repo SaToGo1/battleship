@@ -14,6 +14,7 @@ let playButton = DomElements.getPlayButton();
 DomEvents.setButtonClickEvent(playButton, gameStart);
 
 
+
 // GameStart and cellEvent inside Game? DomElements and DomEvents
 // passed to cosntructor ?
 function gameStart() {
@@ -31,7 +32,14 @@ function cellEvent(cell, y, x) {
     let playerBoard = Game.getPlayerBoard();
     let computerBoard = Game.getComputerBoard()
 
-    let win = true;
+    let cellValue = computerBoard.getCellYX(y,x);
+
+    // If cell is already hit, don't play on this cell.
+    if( cellValue == 2 || cellValue == 3){
+        return;
+    }
+    
+        let win = true;
     // Player Attack + Print attacked Cell
     Game.playerTurn(y, x);
     DomElements.printCell(cell, y, x, computerBoard);
@@ -50,5 +58,13 @@ function cellEvent(cell, y, x) {
         DomElements.loadRetryScreen(`${winner} Win`);
         return ;
     }
-
 }
+
+// function onWin(){
+//     if(Game.winCondition()){
+//         let winner = Game.getWinner();
+//         DomElements.loadRetryScreen(`${winner} Win`);
+        
+//         return true;
+//     } 
+// }
