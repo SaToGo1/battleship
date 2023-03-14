@@ -17,6 +17,13 @@ class DomEvents {
         }
     }
 
+    /**
+     * Add event to all the cells of the board.
+     * 
+     * @param {DOM Array} cellArray Array that contain all the cell elements of the DOM.
+     * @param {Number} boardSize Size of the board in which we will play. to know the number of cells.
+     * @param {Function} cb Callback to execute when the event is fired.
+     */
     setCellsEvent(cellArray, boardSize, cb){
         for(let i = 0; i < cellArray.length; i++){
             let x = i % boardSize;

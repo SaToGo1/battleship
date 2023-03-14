@@ -1,3 +1,4 @@
+import DomElements from './DomElements';
 import DomElementsModule from './DomElements';
 
 const DomEventsModule = require("./DomEvents");
@@ -28,6 +29,15 @@ function gameStart() {
     DomEvents.setCellsEvent(cellArray, computerBoard.getSize(), cellEvent);
 }
 
+/**
+ * Function that will act as callback for the cells, it defines the main
+ * Flow of the game.
+ * 
+ * @param {DOM} cell 
+ * @param {Number} y Coordinates of the cell
+ * @param {Number} x Coordinates of the cell
+ * @returns undefined
+ */
 function cellEvent(cell, y, x) {
     let playerBoard = Game.getPlayerBoard();
     let computerBoard = Game.getComputerBoard()
@@ -39,32 +49,37 @@ function cellEvent(cell, y, x) {
         return;
     }
     
-        let win = true;
-    // Player Attack + Print attacked Cell
+    // Player Attack + Print attacked Cell + check win
     Game.playerTurn(y, x);
     DomElements.printCell(cell, y, x, computerBoard);
-    if(Game.winCondition()){
-        let winner = Game.getWinner();
-        DomElements.loadRetryScreen(`${winner} Win`);
-        return ;
-    } 
+    if(checkWin(Game)){
+        return;
+    }
 
-    // Computer Attack + Print attacked Cell
+    // Computer Attack + Print attacked Cell + check win
     let [xComputerAttack, yComputerAttack] = Game.computerTurn();
     let cell2 = DomElements.getCellPlayerBoard(xComputerAttack, yComputerAttack, playerBoard)
     DomElements.printCell(cell2, yComputerAttack, xComputerAttack, playerBoard);
-    if(Game.winCondition()){
-        let winner = Game.getWinner();
-        DomElements.loadRetryScreen(`${winner} Win`);
-        return ;
+    if(checkWin(Game)){
+        return;
     }
 }
 
-// function onWin(){
-//     if(Game.winCondition()){
-//         let winner = Game.getWinner();
-//         DomElements.loadRetryScreen(`${winner} Win`);
-        
-//         return true;
-//     } 
-// }
+/**
+ * check if we have a winner, if we have a winner then load the Retry Screen.
+ * 
+ * @param {Object Game} Game 
+ * @returns {Boolean} true if we have a winner, false if there's no winner
+ */
+function checkWin(Game){
+    if(Game.winCondition()){
+        let winner = Game.getWinner();
+        DomElements.loadRetryScreen(`${winner} Win`);
+        let retryButton = DomElements.getRetryButton();
+        DomEvents.setButtonClickEvent(retryButton, gameStart);
+        Game.resetGame();
+
+        return true;
+    } 
+    return false;
+}

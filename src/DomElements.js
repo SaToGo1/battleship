@@ -9,7 +9,7 @@ class DomElements {
 
     // ####################
     // ####################
-    // # Privated Methods # 
+    // # Private Methods  # 
     // ####################
     // ####################
 
@@ -336,11 +336,18 @@ class DomElements {
         this.mainContent.appendChild(retryDiv);
     }
     
+    /**
+     * Gets the cell, search for his value in the board and print the value
+     * inside of the cell in the DOM.
+     * 
+     * @param {Dom} cell Dom with the cell in which we have to print
+     * @param {Number} y Coordinates of the cell in the board
+     * @param {Number} x Coordinates of the cell in the board
+     * @param {Object Gameboard} gameboard 
+     */
     printCell(cell, y, x, gameboard){
-        console.log('printCell1')
         let cellInfo = gameboard.getCellYX(y, x);
         this._cellContent(cellInfo, cell, false);
-        console.log('printCell2')
     }
 
 
@@ -373,12 +380,25 @@ class DomElements {
         return retryButton;
     }
 
+    /**
+     * 
+     * @returns {Array} array with all the cells of the computer board.
+     */
     getCellArray(){
         // We get all the cells in the computer Board.
         let cellArray = document.getElementsByClassName('computerCells')
         return cellArray;
     }
 
+    /**
+     * gets the board of the player and the coordinates of our cell and search for the DOM
+     * cell that is placed on those coordinates and then returns it.
+     * 
+     * @param {Number} X Coordinates of the cell
+     * @param {Number} Y Coordinates of the cell
+     * @param {Object Gameboard} board this is the gameboard of the player.
+     * @returns {DOM Element} returns a cell that is in the board on screen.
+     */
     getCellPlayerBoard(X, Y, board){
         let cell;
         let cellArray = document.getElementsByClassName('playerCells');
@@ -391,7 +411,6 @@ class DomElements {
                 cell = cellArray[i];
             }
         }
-        console.log(cell)
         return cell
     }
 
