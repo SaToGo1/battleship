@@ -1,6 +1,5 @@
 import './styles/domElements.css';
 
-
 class DomElements {
     constructor(){
         this.mainContent = document.getElementById("main__content");
@@ -93,7 +92,7 @@ class DomElements {
      * a ship hitted or water hitted.
      * 
      * @param {Number} cellInfo contains number of the cell that indicates if it's water, ship, ...
-     * @param {DOMElement} cell DomElement of the cell we want to modify
+     * @param {DOM Element} cell DomElement of the cell we want to modify
      * @param {Boolean} isPlayer true if this is the PlayerBoard
      */
     _cellContent(cellInfo, cell, isPlayer=false){
@@ -397,7 +396,7 @@ class DomElements {
      * @param {Number} X Coordinates of the cell
      * @param {Number} Y Coordinates of the cell
      * @param {Object Gameboard} board this is the gameboard of the player.
-     * @returns {DOM Element} returns a cell that is in the board on screen.
+     * @returns {DOM} returns a cell that is in the board on screen.
      */
     getCellPlayerBoard(X, Y, board){
         let cell;
@@ -417,7 +416,4 @@ class DomElements {
 
 }
 
-// <button class="main__playButton">Play</button>
-
-//module.exports = DomElements;
 export default DomElements;

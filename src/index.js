@@ -1,4 +1,3 @@
-import DomElements from './DomElements';
 import DomElementsModule from './DomElements';
 
 const DomEventsModule = require("./DomEvents");
