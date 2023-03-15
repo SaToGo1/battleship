@@ -79,11 +79,6 @@
 
     display: grid;
     grid-template-rows: 5% 85% 10%;
-
-    /* Flex works*/
-    /* display: flex;
-    flex-direction: column;
-    gap: 20px; */
 }
 
 .phaseDiv {
@@ -120,10 +115,29 @@
     margin-bottom: 4px;
     margin-right: 20px;
 }
-/*.divPlayer {
 
-}*/
+.buttonRotate {
+    width: 140px;
+    height: 40px;
+    font-size: 1em;
 
+    padding: 10px 20px;
+
+    background-color: var(--color-background);
+	border: 1px solid #000;
+
+    cursor: pointer;
+
+    margin-top: 5px;
+}
+
+.buttonRotate:hover {
+    background-color: var(--color-legend);
+}
+
+.buttonRotate:active {
+    background-color: var(--color-legend-title)
+}
 /*################ 
   # RETRY SCREEN # 
   ################*/

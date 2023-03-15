@@ -432,6 +432,7 @@ class DomElements {
     addRotateButton(){
         let divPlayer = document.getElementById("divPlayer");
         let buttonRotate = document.createElement("button");
+        buttonRotate.classList.add('buttonRotate');
         buttonRotate.id = "buttonRotate";
         buttonRotate.textContent = "Rotate";
 
