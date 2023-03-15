@@ -3,10 +3,10 @@ import DomElementsModule from './DomElements';
 const DomEventsModule = require("./DomEvents");
 const GameModule = require("./game");
 
-let DomElements = new DomElementsModule();
-let DomEvents = new DomEventsModule();
+const DomElements = new DomElementsModule();
+const DomEvents = new DomEventsModule();
 
-let Game = new GameModule();
+const Game = new GameModule();
 
 // LOAD PLAY SCREEN
 DomElements.loadPlayScreen();
@@ -15,8 +15,6 @@ DomEvents.setButtonClickEvent(playButton, gameStart);
 
 
 
-// GameStart and cellEvent inside Game? DomElements and DomEvents
-// passed to cosntructor ?
 function gameStart() {
     let playerBoard = Game.getPlayerBoard();
     let computerBoard = Game.getComputerBoard()

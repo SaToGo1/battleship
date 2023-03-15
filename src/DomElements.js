@@ -385,7 +385,7 @@ class DomElements {
      */
     getCellArray(){
         // We get all the cells in the computer Board.
-        let cellArray = document.getElementsByClassName('computerCells')
+        let cellArray = document.getElementsByClassName('computerCells');
         return cellArray;
     }
 
