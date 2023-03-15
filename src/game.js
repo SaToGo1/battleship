@@ -35,6 +35,8 @@ class Game {
 
         // saves the winner of the game
         this.winner = null;
+
+        this.placeHorizontal = true;
     }
 
     /**
@@ -165,16 +167,28 @@ class Game {
 
     placeAllShips(){
         this.DomElements.changePhase("Place your ships");
-        let shipsToPlace = 5;
-        this.DomElements.addRotateButton();
+        let buttonRotate = this.DomElements.addRotateButton();
+        this.DomEvents.setButtonClickEvent(buttonRotate, this._changeIsHorizontal);
+
+        this.placeOneShip(5);
+        // let shipsToPlace = 5;
         //this.DomElements.deleteRotateButton();
     }
 
-    placeOneShip(){
+    placeOneShip(length){
         let shipNotPlaced = true;
         while(shipNotPlaced){
 
         }
+    }
+
+    _changeIsHorizontal(){
+        if(this.isHorizontal){
+            this.isHorizontal = false;
+            return;
+        }
+
+        this.isHorizontal = true;
     }
 }
 

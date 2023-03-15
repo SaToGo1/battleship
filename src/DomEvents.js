@@ -36,19 +36,23 @@ class DomEvents {
         }
     }
 
-    placeShipEvents(cellArray, boardSize, shipSize, isHorizontal, cb) {
+    placeShipOnMouseOver(cellArray, boardSize, shipLength, isHorizontal, cb) {
         for(let i = 0; i < cellArray.length; i++){
             let x = i % boardSize;
             let y = Math.floor(i / boardSize) * (boardSize / 10);
             let cell = cellArray[i];
 
             cell.addEventListener("mouseover", (event) => {
-                if(isHorizontal){
-
-                }else{
-                    
-                }
+                cb(cell, y, x, isHorizontal, shipLength);
             });
+        }
+    }
+
+    placeShipOnClick(cellArray, boardSize, shipSize, isHorizontal, cb) {
+        for(let i = 0; i < cellArray.length; i++){
+            let x = i % boardSize;
+            let y = Math.floor(i / boardSize) * (boardSize / 10);
+            let cell = cellArray[i];
             
             cell.addEventListener('click', () => {
                 cb(cell, y, x);

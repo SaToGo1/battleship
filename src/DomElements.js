@@ -437,6 +437,8 @@ class DomElements {
         buttonRotate.textContent = "Rotate";
 
         divPlayer.appendChild(buttonRotate);
+
+        return buttonRotate;
     }
 
     deleteRotateButton(){
