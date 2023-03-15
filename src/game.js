@@ -5,7 +5,16 @@ const PLAYER = "player";
 const COMPUTER = "computer";
 
 class Game {
-    constructor() {
+    constructor(DomElements, DomEvents) {
+
+        this.DomElements = DomElements;
+        this.DomEvents = DomEvents;
+
+        // bind this to the method, because when we use them as a callback
+        // for the events we change the context of this.
+        this.gameStart = this.gameStart.bind(this);
+        this.mainGameFlow = this.mainGameFlow.bind(this);
+
         // Initialize Players
         this.player = PlayerFactory();
         this.computer = PlayerFactory();
@@ -66,6 +75,25 @@ class Game {
     }
 
     /**
+     * check if we have a winner, if we have a winner then load the Retry Screen.
+     * 
+     * @param {Object Game} Game 
+     * @returns {Boolean} true if we have a winner, false if there's no winner
+     */
+    checkWin(){
+        if(this.winCondition()){
+            let winner = this.getWinner();
+            this.DomElements.loadRetryScreen(`${winner} Win`);
+            let retryButton = this.DomElements.getRetryButton();
+            this.DomEvents.setButtonClickEvent(retryButton, this.gameStart);
+            this.resetGame();
+
+            return true;
+        } 
+        return false;
+    }
+
+    /**
      * erase all the data of the last game.
      */
     resetGame(){
@@ -85,17 +113,50 @@ class Game {
         this.winner = null;
     }
 
-    // Getters
-    getPlayerBoard() {
-        return this.gameBoardPlayer
-    }
-    
-    getComputerBoard() {
-        return this.gameBoardComputer
-    }
 
     getWinner(){
         return this.winner;
+    }
+
+    gameStart() {    
+        this.DomElements.loadBoardScreen(this.gameBoardPlayer, this.gameBoardComputer);
+        
+        // set Cell events
+        let cellArray = this.DomElements.getCellArray();
+        this.DomEvents.setCellsEvent(cellArray, this.gameBoardComputer.getSize(), this.mainGameFlow);
+    }
+
+    /**
+     * Function that will act as callback for the cells, it defines the main
+     * Flow of the game.
+     * 
+     * @param {DOM} cell 
+     * @param {Number} y Coordinates of the cell
+     * @param {Number} x Coordinates of the cell
+     * @returns undefined
+     */
+    mainGameFlow(cell, y, x) {
+        let cellValue = this.gameBoardComputer.getCellYX(y,x);
+
+        // If cell is already hit, don't play on this cell.
+        if( cellValue == 2 || cellValue == 3){
+            return;
+        }
+        
+        // Player Attack + Print attacked Cell + check win
+        this.playerTurn(y, x);
+        this.DomElements.printCell(cell, y, x, this.gameBoardComputer);
+        if(this.checkWin()){
+            return;
+        }
+
+        // Computer Attack + Print attacked Cell + check win
+        let [xComputerAttack, yComputerAttack] = this.computerTurn();
+        let cell2 = this.DomElements.getCellPlayerBoard(xComputerAttack, yComputerAttack, this.gameBoardPlayer)
+        this.DomElements.printCell(cell2, yComputerAttack, xComputerAttack, this.gameBoardPlayer);
+        if(this.checkWin()){
+            return;
+        }
     }
 }
 
