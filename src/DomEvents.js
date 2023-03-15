@@ -1,6 +1,6 @@
 class DomEvents {
     constructor(){
-        
+        this.mouseOverEvents = [];
     }
 
     /**
@@ -36,19 +36,28 @@ class DomEvents {
         }
     }
 
-    placeShipOnMouseOver(cellArray, boardSize, shipLength, isHorizontal, cb) {
+    /**
+     * This Will place a event over the cells of player board so as we pass through it shows the ships.
+     * 
+     * @param {Dom Array} cellArray Array with all the cells of the player board.
+     * @param {Number} boardSize size of the player board
+     * @param {Number} shipLength Length of the ship we want to add
+     * @param {Boolean} isHorizontal the Ship will be placed horizontal or vertical?
+     * @param {Function} cb callback function executed when we pass the mouse over the player board.
+     */
+    placeShipOnMouseOver(cellArray, boardSize, shipLength, /*isHorizontal,*/ cb) {
         for(let i = 0; i < cellArray.length; i++){
             let x = i % boardSize;
             let y = Math.floor(i / boardSize) * (boardSize / 10);
             let cell = cellArray[i];
 
-            cell.addEventListener("mouseover", (event) => {
-                cb(cell, y, x, isHorizontal, shipLength);
+            cell.addEventListener("mouseover", () => {
+                cb(cell, y, x, /*isHorizontal,*/ shipLength);
             });
         }
     }
 
-    placeShipOnClick(cellArray, boardSize, shipSize, isHorizontal, cb) {
+    placeShipOnClick(cellArray, boardSize, shipSize, /*isHorizontal,*/ cb) {
         for(let i = 0; i < cellArray.length; i++){
             let x = i % boardSize;
             let y = Math.floor(i / boardSize) * (boardSize / 10);

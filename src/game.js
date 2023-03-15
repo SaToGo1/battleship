@@ -14,6 +14,7 @@ class Game {
         // for the events we change the context of this.
         this.gameStart = this.gameStart.bind(this);
         this.mainGameFlow = this.mainGameFlow.bind(this);
+        this._changeIsHorizontal = this._changeIsHorizontal.bind(this);
 
         // Initialize Players
         this.player = PlayerFactory();
@@ -37,6 +38,7 @@ class Game {
         this.winner = null;
 
         this.placeHorizontal = true;
+        this.DomElements.setIsHorizontal(true);
     }
 
     /**
@@ -177,18 +179,25 @@ class Game {
 
     placeOneShip(length){
         let shipNotPlaced = true;
-        while(shipNotPlaced){
-
-        }
+        let cellArray = this.DomElements.getPlayerCellArray();
+        this.DomEvents.placeShipOnMouseOver(    cellArray, 
+                                                this.gameBoardPlayer.getSize(), 
+                                                length, 
+                                                this.DomElements.showShipOnBoard
+                                                );
+        // while(shipNotPlaced){
+        // }
     }
 
     _changeIsHorizontal(){
-        if(this.isHorizontal){
-            this.isHorizontal = false;
+        if(this.placeHorizontal){
+            this.placeHorizontal = false;
+            this.DomElements.setIsHorizontal(false);
             return;
         }
 
-        this.isHorizontal = true;
+        this.placeHorizontal = true;
+        this.DomElements.setIsHorizontal(true);
     }
 }
 

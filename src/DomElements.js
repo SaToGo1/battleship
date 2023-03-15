@@ -3,6 +3,8 @@ import './styles/domElements.css';
 class DomElements {
     constructor(){
         this.mainContent = document.getElementById("main__content");
+
+        this.showShipOnBoard = this.showShipOnBoard.bind(this);
     }
 
 
@@ -49,6 +51,7 @@ class DomElements {
                 let cell = document.createElement("div");
                 cell.classList.add("cell");
                 cell.classList.add("playerCells");
+                cell.id = `playerCell${y}${x}`
                 this._cellContent(cellInfo, cell, true);
                 board.appendChild(cell);
             }
@@ -355,6 +358,16 @@ class DomElements {
         }, 2000);
     }
 
+    /**
+     * Shows on screen in the phaseDiv the string that is passed as argument.
+     * 
+     * @param {String} message
+     */
+    changePhase(message) {
+        let phaseTitle = document.getElementById("phaseTitle");
+        phaseTitle.textContent = message;
+    }
+
 
     // ############################
     // ############################
@@ -395,6 +408,11 @@ class DomElements {
         return cellArray;
     }
 
+    getPlayerCellArray(){
+        let cellArray = document.getElementsByClassName('playerCells');
+        return cellArray;
+    }
+
     /**
      * gets the board of the player and the coordinates of our cell and search for the DOM
      * cell that is placed on those coordinates and then returns it.
@@ -419,16 +437,9 @@ class DomElements {
         return cell
     }
 
-    /**
-     * Shows on screen in the phaseDiv the string that is passed as argument.
-     * 
-     * @param {String} message
-     */
-    changePhase(message) {
-        let phaseTitle = document.getElementById("phaseTitle");
-        phaseTitle.textContent = message;
-    }
-
+    // #################
+    // # Placing Ships #
+    // #################
     addRotateButton(){
         let divPlayer = document.getElementById("divPlayer");
         let buttonRotate = document.createElement("button");
@@ -446,7 +457,35 @@ class DomElements {
         buttonRotate.remove();
     }
 
+    showShipOnBoard(cell, y, x, shipLength){
+        if(this.isHorizontal){
+            for(let i = 0; i<shipLength; i++){
+                if(i == 0){
+                    cell.classList.add('placeShip');
+                }else{
+                    let cellAux = document.getElementById(`playerCell${y}${x+i}`)
+                    if(cellAux){
+                        cellAux.classList.add('placeShip');
+                    }
+                }
+            }
+        }else{
+            for(let i = 0; i<shipLength; i++){
+                if(i == 0){
+                    cell.classList.add('placeShip');
+                }else{
+                    let cellAux = document.getElementById(`playerCell${y+i}${x}`)
+                    if(cellAux){
+                        cellAux.classList.add('placeShip');
+                    }
+                }
+            }
+        }
+    }
 
+    setIsHorizontal(bool) {
+        this.isHorizontal = bool;
+    }
 }
 
 export default DomElements;
