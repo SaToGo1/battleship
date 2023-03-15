@@ -4,7 +4,7 @@ class DomElements {
     constructor(){
         this.mainContent = document.getElementById("main__content");
 
-        this.showShipOnBoard = this.showShipOnBoard.bind(this);
+        this.previewShipOnBoard = this.previewShipOnBoard.bind(this);
     }
 
 
@@ -457,9 +457,17 @@ class DomElements {
         buttonRotate.remove();
     }
 
-    showShipOnBoard(cell, y, x, shipLength){
+    /**
+     * This will give us a preview of how a ship will be placed on the board as we pass through it.
+     * 
+     * @param {DOM} cell actual cell where we want the preview of the ship.
+     * @param {Number} y coordinates of the actual cell.
+     * @param {Number} x coordinates of the actual cell.
+     * @param {Number} shipLength so we know how much we have to extend the preview.
+     */
+    previewShipOnBoard(cell, y, x){
         if(this.isHorizontal){
-            for(let i = 0; i<shipLength; i++){
+            for(let i = 0; i<this.shipLength; i++){
                 if(i == 0){
                     cell.classList.add('placeShip');
                 }else{
@@ -470,7 +478,7 @@ class DomElements {
                 }
             }
         }else{
-            for(let i = 0; i<shipLength; i++){
+            for(let i = 0; i<this.shipLength; i++){
                 if(i == 0){
                     cell.classList.add('placeShip');
                 }else{
@@ -483,8 +491,19 @@ class DomElements {
         }
     }
 
+    quitPreviewShipOnBoard(){
+        let cellArray = document.getElementsByClassName('playerCells');
+        for(let i = 0; i < cellArray.length; i++){
+            cellArray[i].classList.remove('placeShip');
+        }
+    }
+
     setIsHorizontal(bool) {
         this.isHorizontal = bool;
+    }
+
+    setShipLength(num) {
+        this.shipLength = num;
     }
 }
 

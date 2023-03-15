@@ -180,11 +180,17 @@ class Game {
     placeOneShip(length){
         let shipNotPlaced = true;
         let cellArray = this.DomElements.getPlayerCellArray();
-        this.DomEvents.placeShipOnMouseOver(    cellArray, 
-                                                this.gameBoardPlayer.getSize(), 
-                                                length, 
-                                                this.DomElements.showShipOnBoard
-                                                );
+        this.DomEvents.placeShipOnMouseOver(    
+            cellArray, 
+            this.gameBoardPlayer.getSize(), 
+            this.DomElements.previewShipOnBoard
+        );
+        this.DomEvents.placeShipOnMouseOut(    
+            cellArray, 
+            this.DomElements.quitPreviewShipOnBoard
+        );
+        this.DomElements.setShipLength(length);
+
         // while(shipNotPlaced){
         // }
     }
