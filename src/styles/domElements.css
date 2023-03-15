@@ -86,13 +86,13 @@
     gap: 20px; */
 }
 
-.turnDiv {
+.phaseDiv {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.turnTitle {
+.phaseTitle {
     margin: 0;
     height: 30;
 }

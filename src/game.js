@@ -118,12 +118,16 @@ class Game {
         return this.winner;
     }
 
-    gameStart() {    
+    gameStart() {
+        // LOAD GAME SCREEN
         this.DomElements.loadBoardScreen(this.gameBoardPlayer, this.gameBoardComputer);
         
+        // PLACE SHIPS
+        this.placeAllShips();
+
         // set Cell events
-        let cellArray = this.DomElements.getCellArray();
-        this.DomEvents.setCellsEvent(cellArray, this.gameBoardComputer.getSize(), this.mainGameFlow);
+        // let cellArray = this.DomElements.getCellArray();
+        // this.DomEvents.setCellsEvent(cellArray, this.gameBoardComputer.getSize(), this.mainGameFlow);
     }
 
     /**
@@ -156,6 +160,20 @@ class Game {
         this.DomElements.printCell(cell2, yComputerAttack, xComputerAttack, this.gameBoardPlayer);
         if(this.checkWin()){
             return;
+        }
+    }
+
+    placeAllShips(){
+        this.DomElements.changePhase("Place your ships");
+        let shipsToPlace = 5;
+        this.DomElements.addRotateButton();
+        //this.DomElements.deleteRotateButton();
+    }
+
+    placeOneShip(){
+        let shipNotPlaced = true;
+        while(shipNotPlaced){
+
         }
     }
 }

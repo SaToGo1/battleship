@@ -68,6 +68,7 @@ const GameboardFactory = () => {
                     _shipsBoard[y][i] = _ships.length;
                 }
                 _ships.push(ship);
+                return true;
             }
 
         // Place Ship Vertical
@@ -85,8 +86,10 @@ const GameboardFactory = () => {
                     _shipsBoard[i][x] = _ships.length;
                 }
                 _ships.push(ship);
+                return true;
             }
         }
+        return false;
     }
 
     /**

@@ -35,6 +35,26 @@ class DomEvents {
             });
         }
     }
+
+    placeShipEvents(cellArray, boardSize, shipSize, isHorizontal, cb) {
+        for(let i = 0; i < cellArray.length; i++){
+            let x = i % boardSize;
+            let y = Math.floor(i / boardSize) * (boardSize / 10);
+            let cell = cellArray[i];
+
+            cell.addEventListener("mouseover", (event) => {
+                if(isHorizontal){
+
+                }else{
+                    
+                }
+            });
+            
+            cell.addEventListener('click', () => {
+                cb(cell, y, x);
+            });
+        }
+    }
 }
 
 module.exports = DomEvents

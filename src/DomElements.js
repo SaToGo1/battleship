@@ -173,29 +173,30 @@ class DomElements {
         let gameUIdiv = document.createElement('div');
         gameUIdiv.classList.add("gameUIdiv");
 
-        let divPlayer1 = document.createElement('div');
-        divPlayer1.classList.add("divPlayer");
+        let divPlayer = document.createElement('div');
+        divPlayer.classList.add("divPlayer");
+        divPlayer.id = "divPlayer"
 
-        let divPlayer2 = document.createElement('div');
-        divPlayer2.classList.add("divPlayer");
+        let divComputer = document.createElement('div');
+        divComputer.classList.add("divComputer");
 
-        let player1Title = document.createElement('h2');
-        player1Title.textContent = "Player 1";
+        let playerTitle = document.createElement('h2');
+        playerTitle.textContent = "Player";
 
-        let player2Title = document.createElement('h2');
-        player2Title.textContent = "Player 2";
+        let ComputerTitle = document.createElement('h2');
+        ComputerTitle.textContent = "Computer";
 
         let board1 = this._buildPlayerBoard(gameboardPlayer);
         let board2 = this._buildComputerBoard(gameboardComputer);
 
-        divPlayer1.appendChild(player1Title);
-        divPlayer1.appendChild(board1);
+        divPlayer.appendChild(playerTitle);
+        divPlayer.appendChild(board1);
 
-        divPlayer2.appendChild(player2Title);
-        divPlayer2.appendChild(board2);
+        divComputer.appendChild(ComputerTitle);
+        divComputer.appendChild(board2);
 
-        gameUIdiv.appendChild(divPlayer1);
-        gameUIdiv.appendChild(divPlayer2);
+        gameUIdiv.appendChild(divPlayer);
+        gameUIdiv.appendChild(divComputer);
 
         return gameUIdiv;
     }
@@ -212,7 +213,7 @@ class DomElements {
     _GameScreen(gameboardPlayer, gameboardComputer){
         /*
         <div>       -> GameScreen
-            <div>       -> turn div
+            <div>       -> phase div
                 ...
             </div>
 
@@ -229,14 +230,15 @@ class DomElements {
         gameScreen.classList.add("gameScreen");
         gameScreen.id = "gameScreen";
 
-        let turnDiv = this._turnDiv();
+        let phaseDiv = this._phaseDiv();
 
         let GameUI = this._GameUI(gameboardPlayer, gameboardComputer);
 
         let LegendDiv = this._LegendDiv();
 
-        gameScreen.appendChild(turnDiv);
+        gameScreen.appendChild(phaseDiv);
         gameScreen.appendChild(GameUI);
+
         gameScreen.appendChild(LegendDiv);
 
         return gameScreen;
@@ -244,17 +246,17 @@ class DomElements {
 
     }
 
-    _turnDiv(){
-        let turnDiv = document.createElement('div');
-        turnDiv.classList.add("turnDiv");
-        let turnTitle = document.createElement('h2');
-        turnTitle.classList.add("turnTitle");
-        turnTitle.id = "turnTitle";
-        turnTitle.textContent = "your turn"         // This will be defined by an argument in the future.
+    _phaseDiv(){
+        let phaseDiv = document.createElement('div');
+        phaseDiv.classList.add("phaseDiv");
+        let phaseTitle = document.createElement('h2');
+        phaseTitle.classList.add("phaseTitle");
+        phaseTitle.id = "phaseTitle";
+        phaseTitle.textContent = "your turn"         // This will be defined by an argument in the future.
 
-        turnDiv.appendChild(turnTitle);
+        phaseDiv.appendChild(phaseTitle);
 
-        return turnDiv;
+        return phaseDiv;
     }
 
     _LegendDiv(){
@@ -417,15 +419,31 @@ class DomElements {
         return cell
     }
 
-    // /**
-    //  * Shows on screen in the turnDiv the name that is passed as argument.
-    //  * 
-    //  * @param {String} turn name(should be of player or computer).
-    //  */
-    // changeTurn(turn) {
-    //     let turnTitle = document.getElementById("turnTitle");
-    //     turnTitle.textContent = turn;
-    // }
+    /**
+     * Shows on screen in the phaseDiv the string that is passed as argument.
+     * 
+     * @param {String} message
+     */
+    changePhase(message) {
+        let phaseTitle = document.getElementById("phaseTitle");
+        phaseTitle.textContent = message;
+    }
+
+    addRotateButton(){
+        let divPlayer = document.getElementById("divPlayer");
+        let buttonRotate = document.createElement("button");
+        buttonRotate.id = "buttonRotate";
+        buttonRotate.textContent = "Rotate";
+
+        divPlayer.appendChild(buttonRotate);
+    }
+
+    deleteRotateButton(){
+        let buttonRotate = document.getElementById("buttonRotate");
+        buttonRotate.remove();
+    }
+
+
 }
 
 export default DomElements;
