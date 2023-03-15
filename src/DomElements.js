@@ -159,8 +159,6 @@ class DomElements {
     _GameUI(gameboardPlayer, gameboardComputer) {
         /*
         <div>               -> gameUIdiv
-            <div>               -> Turn title
-            </div>
             <div>               -> player1div
                 <h2></h2>           -> player title
                 <div> ... </div>    -> BOARD
@@ -251,6 +249,7 @@ class DomElements {
         turnDiv.classList.add("turnDiv");
         let turnTitle = document.createElement('h2');
         turnTitle.classList.add("turnTitle");
+        turnTitle.id = "turnTitle";
         turnTitle.textContent = "your turn"         // This will be defined by an argument in the future.
 
         turnDiv.appendChild(turnTitle);
@@ -347,6 +346,11 @@ class DomElements {
     printCell(cell, y, x, gameboard){
         let cellInfo = gameboard.getCellYX(y, x);
         this._cellContent(cellInfo, cell, false);
+        
+        cell.classList.add("cellClicked");
+        setTimeout(() =>{
+            cell.classList.remove("cellClicked");
+        }, 2000);
     }
 
 
@@ -413,7 +417,15 @@ class DomElements {
         return cell
     }
 
-
+    // /**
+    //  * Shows on screen in the turnDiv the name that is passed as argument.
+    //  * 
+    //  * @param {String} turn name(should be of player or computer).
+    //  */
+    // changeTurn(turn) {
+    //     let turnTitle = document.getElementById("turnTitle");
+    //     turnTitle.textContent = turn;
+    // }
 }
 
 export default DomElements;

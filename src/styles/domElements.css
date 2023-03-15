@@ -60,6 +60,10 @@
     background-color: #CCC;
 }
 
+.cellClicked {
+    background-color: #AAA;
+}
+
 .gameUIdiv {
     width: 100%;
     height: 100%;

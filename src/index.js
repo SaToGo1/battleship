@@ -23,7 +23,7 @@ function gameStart() {
     
     // set Cell events
     let cellArray = DomElements.getCellArray();
-    DomEvents.setCellsEvent(cellArray, computerBoard.getSize(), cellEvent);
+    DomEvents.setCellsEvent(cellArray, computerBoard.getSize(), mainGameFlow);
 }
 
 /**
@@ -35,7 +35,7 @@ function gameStart() {
  * @param {Number} x Coordinates of the cell
  * @returns undefined
  */
-function cellEvent(cell, y, x) {
+function mainGameFlow(cell, y, x) {
     let playerBoard = Game.getPlayerBoard();
     let computerBoard = Game.getComputerBoard()
 
@@ -61,6 +61,7 @@ function cellEvent(cell, y, x) {
         return;
     }
 }
+
 
 /**
  * check if we have a winner, if we have a winner then load the Retry Screen.
