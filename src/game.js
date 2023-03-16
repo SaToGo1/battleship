@@ -118,11 +118,13 @@ class Game {
         this.DomElements.loadBoardScreen(this.gameBoardPlayer, this.gameBoardComputer);
         
         // PLACE SHIPS
-        this.placeAllShips();
-
-        // set Cell events
-        // let cellArray = this.DomElements.getCellArray();
-        // this.DomEvents.setCellsEvent(cellArray, this.gameBoardComputer.getSize(), this.mainGameFlow);
+        this.placeAllShips()
+            .then(() => {
+                // set Cell events
+                this.DomElements.changePhase("Play");
+                let cellArray = this.DomElements.getCellArray();
+                this.DomEvents.setCellsEvent(cellArray, this.gameBoardComputer.getSize(), this.mainGameFlow);
+            })
     }
 
     /**
@@ -158,56 +160,50 @@ class Game {
         }
     }
 
-    placeAllShips(){
+    async placeAllShips(){
         this.DomElements.changePhase("Place your ships");
         let buttonRotate = this.DomElements.addRotateButton();
         this.DomEvents.setButtonClickEvent(buttonRotate, this._changeIsHorizontal);
 
+        await this._placeOneShip(5)
+        await this._placeOneShip(4)
+        await this._placeOneShip(3)
+        await this._placeOneShip(2)
+        await this._placeOneShip(2)
+        
+        await this.DomElements.reBuildPlayerBoard(this.gameBoardPlayer);
+    }
+
+    async _placeOneShip(length){
         let cellArray = this.DomElements.getPlayerCellArray();
+        this.shipPlaced = false;
+        this.DomElements.setShipLength(length);
+        this.shipToPlaceLen = length;
+        this._shipPreview(cellArray);
+
+        while(!this.shipPlaced){
+            await this.DomEvents.placeShipOnClick(cellArray,  this.gameBoardPlayer.getSize(), length, this._placeShip);
+            await this.DomElements.reBuildPlayerBoard(this.gameBoardPlayer);
+            await this._shipPreview(cellArray);
+            await this.DomEvents.setButtonClickEvent(this.DomElements.addRotateButton(), this._changeIsHorizontal)
+        }
+    }
+
+    _placeShip(y, x, length){
+        this.shipPlaced = this.gameBoardPlayer.placeShip(y,x, this.shipToPlaceLen, this.placeHorizontal);
+    }
+
+    _shipPreview(cellArray){
         this.DomEvents.placeShipOnMouseOver(    
             cellArray, 
             this.gameBoardPlayer.getSize(), 
             this.DomElements.previewShipOnBoard
         )
+
         this.DomEvents.placeShipOnMouseOut(    
             cellArray, 
             this.DomElements.quitPreviewShipOnBoard
         )
-
-        this._placeOneShip(5, cellArray)
-            .then(() => this._placeOneShip(4, cellArray))
-            .then(() => this._placeOneShip(3, cellArray))
-            .then(() => this._placeOneShip(2, cellArray))
-            .then(() => this._placeOneShip(2, cellArray))
-        
-
-        // this._placeOneShip(5)
-        //     .then((val) => console.log(`promise val: ${val}`))
-
-        //this.DomElements.setShipLength(5);
-
-        // this.placeOneShip(5)
-        // let shipsToPlace = 5;
-        //this.DomElements.deleteRotateButton();
-    }
-
-    async _placeOneShip(length, cellArray){
-        this.shipPlaced = false;
-        this.DomElements.setShipLength(length);
-        this.shipToPlaceLen = length;
-        console.log(` `)
-        console.log(`length equals to ${length}`)
-        while(!this.shipPlaced){
-            await this.DomEvents.placeShipOnClick(cellArray,  this.gameBoardPlayer.getSize(), length, this._placeShip);
-            console.log('on the way');
-        }
-        console.log('out of while')
-        // this.DomElements.printBoard(this.gameBoardPlayer.getSize(), this.gameBoardPlayer);
-        this.DomElements.reBuildPlayerBoard(this.gameBoardPlayer);
-    }
-
-    _placeShip(y, x, length){
-        this.shipPlaced = this.gameBoardPlayer.placeShip(y,x, this.shipToPlaceLen, this.placeHorizontal);
     }
 
     _changeIsHorizontal(){
@@ -223,7 +219,3 @@ class Game {
 }
 
 module.exports = Game
-
-
-// TODO
-// win condition()

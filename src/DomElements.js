@@ -439,6 +439,7 @@ class DomElements {
         return cellArray;
     }
 
+
     /**
      * gets the board of the player and the coordinates of our cell and search for the DOM
      * cell that is placed on those coordinates and then returns it.
