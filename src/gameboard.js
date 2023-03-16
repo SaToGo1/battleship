@@ -87,13 +87,13 @@ const GameboardFactory = () => {
             if( (y + length - 1 < _size) && (y > -1) ){
                 // Checks Collision
                 let collision = [];
-                for(let i = x; i < (x+length); i++){
-                    collision.push(_hitsBoard[y][i]);
+                for(let i = y; i < (y+length); i++){
+                    collision.push(_hitsBoard[i][x]);
                 }
                 if(collision.includes(1)){
                     return false;
                 }
-                
+
                 let ship = ShipFactory(length);
 
                 // space filled with a ship equal to 1 in the Hitsboard.
