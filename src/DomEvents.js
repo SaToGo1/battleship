@@ -77,19 +77,6 @@ class DomEvents {
 
     placeShipOnClick(cellArray, boardSize, shipSize, cb) {
         return new Promise(resolve => {
-            
-            // function listener(){
-            //     for(let i = 0; i < cellArray.length; i++){
-            //         let cell = cellArray[i];
-                    
-            //         cell.removeEventListener('click', listener);
-            //     }
-
-            //     alert('hi')
-            //     // cb(cell, y, x)
-            //     resolve();
-            // }
-
             for(let i = 0; i < cellArray.length; i++){
                 let x = i % boardSize;
                 let y = Math.floor(i / boardSize) * (boardSize / 10);

@@ -110,6 +110,8 @@ class Game {
         // PLACE SHIPS
         this.placeAllShips()
             .then(() => {
+                this.placeComputerShips();
+
                 // set Cell events
                 this.DomElements.changePhase("Play");
                 let cellArray = this.DomElements.getCellArray();
@@ -205,6 +207,29 @@ class Game {
 
         this.placeHorizontal = true;
         this.DomElements.setIsHorizontal(true);
+    }
+
+    placeComputerShips(){
+        this._placeSingleComputerShip(5);
+        this._placeSingleComputerShip(4);
+        this._placeSingleComputerShip(3);
+        this._placeSingleComputerShip(2);
+        this._placeSingleComputerShip(2);
+    }
+    
+    _placeSingleComputerShip(length){
+        let x = 0;
+        let y = 0;
+        let horizontal = true;
+        let shipPlaced = false;
+        while(!shipPlaced){
+            // generate random number between 0 - 9
+            x = Math.floor(Math.random() * 10);
+            y = Math.floor(Math.random() * 10);
+            horizontal = Math.random() >= 0.5;
+
+            shipPlaced = this.gameBoardComputer.placeShip(y, x, length, horizontal);
+        }
     }
 }
 
