@@ -55,9 +55,18 @@ const GameboardFactory = () => {
         
         // Place Ship Horizontal
         if(isHorizontal){ 
-
             // Ship is inside the edges of the board
-            if( (x + length < _size) && (x > -1) ){
+            if( (x + length - 1 < _size) && (x > -1) ){
+
+                // Checks Collision
+                let collision = [];
+                for(let i = x; i < (x+length); i++){
+                    collision.push(_hitsBoard[y][i]);
+                }
+                if(collision.includes(1)){
+                    return false;
+                }
+
                 let ship = ShipFactory(length);
 
                 // space filled with a ship equal to 1 in the Hitsboard.
@@ -75,7 +84,7 @@ const GameboardFactory = () => {
         }else{ 
 
             // Ship is inside the edges of the board
-            if( (y + length < _size) && (y > -1) ){
+            if( (y + length - 1 < _size) && (y > -1) ){
                 let ship = ShipFactory(length);
 
                 // space filled with a ship equal to 1 in the Hitsboard.

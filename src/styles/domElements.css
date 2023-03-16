@@ -187,3 +187,7 @@
 
     font-weight: 800;
 }
+
+#phaseTitle {
+    background-color: var(--color-legend);
+}

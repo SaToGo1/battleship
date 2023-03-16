@@ -368,7 +368,33 @@ class DomElements {
         phaseTitle.textContent = message;
     }
 
+    printBoard(boardSize, gameboard){
+        let cellArray = document.getElementsByClassName('playerCells');
+        if(cellArray){
+            for(let i = 0; i < cellArray.length; i++){
+                let cell = cellArray[i];
+                let x = i % boardSize;
+                let y = Math.floor(i / boardSize) * (boardSize / 10);
+                let cellInfo = gameboard.getCellYX(y, x);
 
+                this._cellContent(cellInfo, cell, true);
+            }
+        }
+    }
+
+    reBuildPlayerBoard(gameBoardPlayer){
+        let divPlayer = document.getElementById('divPlayer');
+        divPlayer.innerHTML = ' ';
+
+        let playerTitle = document.createElement('h2');
+        playerTitle.textContent = "Player";
+
+        let board = this._buildPlayerBoard(gameBoardPlayer);
+            
+        divPlayer.appendChild(playerTitle);
+        divPlayer.appendChild(board);
+
+    }
     // ############################
     // ############################
     // # Getters for DOM ELEMENTS # 

@@ -76,16 +76,34 @@ class DomEvents {
     }
 
     placeShipOnClick(cellArray, boardSize, shipSize, cb) {
-        for(let i = 0; i < cellArray.length; i++){
-            let x = i % boardSize;
-            let y = Math.floor(i / boardSize) * (boardSize / 10);
-            let cell = cellArray[i];
+        return new Promise(resolve => {
             
-            cell.addEventListener('click', () => {
-                cb(cell, y, x);
-            });
-        }
+            // function listener(){
+            //     for(let i = 0; i < cellArray.length; i++){
+            //         let cell = cellArray[i];
+                    
+            //         cell.removeEventListener('click', listener);
+            //     }
+
+            //     alert('hi')
+            //     // cb(cell, y, x)
+            //     resolve();
+            // }
+
+            for(let i = 0; i < cellArray.length; i++){
+                let x = i % boardSize;
+                let y = Math.floor(i / boardSize) * (boardSize / 10);
+                let cell = cellArray[i];
+                
+                cell.addEventListener("click", () => {    
+                    cb(y, x, shipSize)
+                    resolve();
+                });
+            }
+
+        })
     }
+
 }
 
 module.exports = DomEvents
