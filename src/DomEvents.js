@@ -90,7 +90,6 @@ class DomEvents {
 
         })
     }
-
 }
 
 module.exports = DomEvents

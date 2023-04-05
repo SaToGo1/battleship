@@ -98,11 +98,18 @@ class Game {
         this.winner = null;
     }
 
-
+    /**
+     * returns the winner of the game.
+     * @returns {string} winner of the game.
+     */
     getWinner(){
         return this.winner;
     }
 
+    /**
+     * Set up the game, shows the game screen, wait until player place the ships and then
+     * starts the play phase.
+     */
     gameStart() {
         // LOAD GAME SCREEN
         this.DomElements.loadBoardScreen(this.gameBoardPlayer, this.gameBoardComputer);
